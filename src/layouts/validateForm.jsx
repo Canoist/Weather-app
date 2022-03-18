@@ -1,3 +1,5 @@
+import { DevTool } from "@hookform/devtools";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -12,8 +14,6 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const ValidateForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -91,7 +91,6 @@ const ValidateForm = () => {
     <Box
       component="form"
       sx={{
-        fontFamily: "Montserrat, sans-serif",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -110,7 +109,7 @@ const ValidateForm = () => {
           margin: "30px 0 14px",
           color: "#23252E",
         }}>
-        Become a farmland investor
+        Welcome to weather forecast
       </h4>
       <TextField
         error={errors["First name"]}
@@ -207,10 +206,7 @@ const ValidateForm = () => {
           },
         })}
       />
-      <FormControl
-        error={errors.License}
-        helperText={errors.License ? errors.License.message : null}
-        margin="normal">
+      <FormControl error={errors.License} margin="normal">
         <FormControlLabel
           control={
             <Checkbox
@@ -226,13 +222,12 @@ const ValidateForm = () => {
           sx={{
             m: "16px 0 8px",
             color: "black",
-            fontFamily: "Montserrat, sans-serif",
           }}
           label={legacyLabel}
         />
-        {errors.License ? (
+        {errors.License && (
           <FormHelperText>{errors.License.message}</FormHelperText>
-        ) : null}
+        )}
       </FormControl>
       <Button
         variant="contained"
@@ -241,11 +236,10 @@ const ValidateForm = () => {
         sx={{
           mt: 2,
           mb: 6,
-          fontFamily: "Montserrat, sans-serif",
         }}>
-        Continue
+        Register
       </Button>
-      <DevTool control={control} /> {/* set up the dev tool */}
+      <DevTool control={control} /> {/*set up the dev tool */}
     </Box>
   );
 };
