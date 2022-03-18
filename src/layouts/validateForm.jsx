@@ -10,7 +10,7 @@ import {
   FormControlLabel,
   Link,
   FormControl,
-  FormHelperText,
+  FormHelperText
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ const ValidateForm = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
 
   const handleClickShowPassword = () => {
@@ -56,7 +56,8 @@ const ValidateForm = () => {
         href="#"
         color="inherit"
         underline="always"
-        onClick={handleClickOnLink}>
+        onClick={handleClickOnLink}
+      >
         terms of service
       </Link>
       <span>, </span>
@@ -64,7 +65,8 @@ const ValidateForm = () => {
         href="#"
         color="inherit"
         underline="always"
-        onClick={handleClickOnLink}>
+        onClick={handleClickOnLink}
+      >
         privacy policy
       </Link>
       <span>, </span>
@@ -72,7 +74,8 @@ const ValidateForm = () => {
         href="#"
         color="inherit"
         underline="always"
-        onClick={handleClickOnLink}>
+        onClick={handleClickOnLink}
+      >
         electronic communications disclosure
       </Link>
       <span>, and </span>
@@ -80,7 +83,8 @@ const ValidateForm = () => {
         href="#"
         color="inherit"
         underline="always"
-        onClick={handleClickOnLink}>
+        onClick={handleClickOnLink}
+      >
         electronic funds transfer disclosure
       </Link>
       <span>.</span>
@@ -100,15 +104,17 @@ const ValidateForm = () => {
         mx: "auto", // margin: theme.spacing(1)
         px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
         zIndex: "tooltip", // theme.zIndex.tooltip
-        width: "470px",
+        width: "470px"
       }}
-      onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h4
         style={{
           fontWeight: "normal",
           margin: "30px 0 14px",
-          color: "#23252E",
-        }}>
+          color: "#23252E"
+        }}
+      >
         Welcome to weather forecast
       </h4>
       <TextField
@@ -120,7 +126,7 @@ const ValidateForm = () => {
         helperText={errors["First name"] ? errors["First name"].message : null}
         {...register("First name", {
           required: { value: true, message: "Поле обязательно для заполнения" },
-          maxLength: 80,
+          maxLength: 80
         })}
       />
       <TextField
@@ -132,7 +138,7 @@ const ValidateForm = () => {
         margin="normal"
         {...register("Last name", {
           required: { value: true, message: "Поле обязательно для заполнения" },
-          maxLength: 100,
+          maxLength: 100
         })}
       />
       <TextField
@@ -145,7 +151,7 @@ const ValidateForm = () => {
         {...register("Password", {
           required: { value: true, message: "Поле обязательно для заполнения" },
           minLength: 7,
-          pattern: /\d+/g,
+          pattern: /\d+/g
         })}
         InputProps={{
           endAdornment: (
@@ -153,12 +159,13 @@ const ValidateForm = () => {
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                edge="end">
+                edge="end"
+              >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
           ),
-          type: showPassword ? "text" : "password",
+          type: showPassword ? "text" : "password"
         }}
       />
       <TextField
@@ -174,8 +181,8 @@ const ValidateForm = () => {
 
           pattern: {
             value: /^\S+@\S+$/i,
-            message: "Email введен некорректно. Шаблон abc@abc.com",
-          },
+            message: "Email введен некорректно. Шаблон abc@abc.com"
+          }
         })}
       />
       <TextField
@@ -190,11 +197,11 @@ const ValidateForm = () => {
         {...register("Phone", {
           required: {
             value: true,
-            message: "Поле обязательно для заполнения",
+            message: "Поле обязательно для заполнения"
           },
           minLength: {
             value: 6,
-            message: "Не менее 6 и не более 14 символов", // JS only: <p>error message</p> TS only support string\
+            message: "Не менее 6 и не более 14 символов" // JS only: <p>error message</p> TS only support string\
           },
 
           maxLength: 15,
@@ -202,8 +209,8 @@ const ValidateForm = () => {
             // eslint-disable-next-line no-useless-escape
             value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
             message: `Телефон не соответсвует шаблону.
-              Шаблоны: +79261234567, 89261234567, 8(926)123-45-67, (495) 123 45 67, 8 927 1234 234 и пр.`,
-          },
+              Шаблоны: +79261234567, 89261234567, 8(926)123-45-67, (495) 123 45 67, 8 927 1234 234 и пр.`
+          }
         })}
       />
       <FormControl error={errors.License} margin="normal">
@@ -213,15 +220,15 @@ const ValidateForm = () => {
               {...register("License", {
                 required: {
                   value: true,
-                  message: "Необходимо ваше согласие",
-                },
+                  message: "Необходимо ваше согласие"
+                }
               })}
               defaultChecked
             />
           }
           sx={{
             m: "16px 0 8px",
-            color: "black",
+            color: "black"
           }}
           label={legacyLabel}
         />
@@ -235,11 +242,12 @@ const ValidateForm = () => {
         color="warning"
         sx={{
           mt: 2,
-          mb: 6,
-        }}>
+          mb: 6
+        }}
+      >
         Register
       </Button>
-      <DevTool control={control} /> {/*set up the dev tool */}
+      <DevTool control={control} /> {/* set up the dev tool */}
     </Box>
   );
 };
