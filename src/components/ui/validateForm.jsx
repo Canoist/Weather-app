@@ -14,8 +14,9 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
-const ValidateForm = () => {
+const ValidateForm = ({ toggleForm }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -69,24 +70,6 @@ const ValidateForm = () => {
       >
         privacy policy
       </Link>
-      <span>, </span>
-      <Link
-        href="#"
-        color="inherit"
-        underline="always"
-        onClick={handleClickOnLink}
-      >
-        electronic communications disclosure
-      </Link>
-      <span>, and </span>
-      <Link
-        href="#"
-        color="inherit"
-        underline="always"
-        onClick={handleClickOnLink}
-      >
-        electronic funds transfer disclosure
-      </Link>
       <span>.</span>
     </>
   );
@@ -103,12 +86,13 @@ const ValidateForm = () => {
         my: 3,
         mx: "auto", // margin: theme.spacing(1)
         px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
+        pb: 2,
         zIndex: "tooltip", // theme.zIndex.tooltip
         width: "470px"
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h4
+      <h3
         style={{
           fontWeight: "normal",
           margin: "30px 0 14px",
@@ -116,7 +100,7 @@ const ValidateForm = () => {
         }}
       >
         Welcome to weather forecast
-      </h4>
+      </h3>
       <TextField
         error={errors["First name"]}
         id="First Name"
@@ -227,7 +211,6 @@ const ValidateForm = () => {
             />
           }
           sx={{
-            m: "16px 0 8px",
             color: "black"
           }}
           label={legacyLabel}
@@ -242,13 +225,39 @@ const ValidateForm = () => {
         color="warning"
         sx={{
           mt: 2,
-          mb: 6
+          mb: 2
         }}
       >
         Register
       </Button>
+      <p
+        align="center"
+        style={{
+          fontWeight: "normal",
+          color: "#23252E"
+        }}
+      >
+        Already have account?{" "}
+        <Link
+          variant="button"
+          underline="always"
+          onClick={toggleForm}
+          style={{
+            fontWeight: "normal",
+            cursor: "pointer",
+            color: "#23252E"
+          }}
+        >
+          {" "}
+          Sign in
+        </Link>
+      </p>
       <DevTool control={control} /> {/* set up the dev tool */}
     </Box>
   );
 };
 export default ValidateForm;
+
+ValidateForm.propTypes = {
+  toggleForm: PropTypes.func
+};
