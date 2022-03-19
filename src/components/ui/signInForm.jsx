@@ -37,7 +37,8 @@ const SignInForm = ({ toggleForm }) => {
         my: 3,
         mx: "auto", // margin: theme.spacing(1)
         px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
-        pb: 2,
+        pt: 3,
+        pb: 1,
         zIndex: "tooltip", // theme.zIndex.tooltip
         width: "470px"
       }}
@@ -45,8 +46,7 @@ const SignInForm = ({ toggleForm }) => {
     >
       <h3
         style={{
-          fontWeight: "normal",
-          margin: "30px 0 14px",
+          fontWeight: "bold",
           color: "#23252E"
         }}
       >
