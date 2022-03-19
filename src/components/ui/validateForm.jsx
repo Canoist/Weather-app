@@ -83,10 +83,11 @@ const ValidateForm = ({ toggleForm }) => {
         justifyContent: "center",
         boxShadow: 16, // theme.shadows[1]
         color: "primary.main", // theme.palette.primary.main
-        my: 3,
+        my: 2,
         mx: "auto", // margin: theme.spacing(1)
         px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
-        pb: 2,
+        pt: 3,
+        pb: 1,
         zIndex: "tooltip", // theme.zIndex.tooltip
         width: "470px"
       }}
@@ -94,8 +95,7 @@ const ValidateForm = ({ toggleForm }) => {
     >
       <h3
         style={{
-          fontWeight: "normal",
-          margin: "30px 0 14px",
+          fontWeight: "bold",
           color: "#23252E"
         }}
       >
@@ -225,7 +225,7 @@ const ValidateForm = ({ toggleForm }) => {
         color="warning"
         sx={{
           mt: 2,
-          mb: 2
+          mb: 1
         }}
       >
         Register

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SignInForm from "../components/ui/signInForm";
@@ -13,23 +14,25 @@ const Main = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3 shadow p-4">
-          {formType === "register" ? (
-            <>
-              <ValidateForm toggleForm={toggleFormType} />
-
-            </>
-          ) : (
-            <>
-              <SignInForm toggleForm={toggleFormType} />
-
-            </>
-          )}
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        width: "100vw",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      {formType === "register" ? (
+        <>
+          <ValidateForm toggleForm={toggleFormType} />
+        </>
+      ) : (
+        <>
+          <SignInForm toggleForm={toggleFormType} />
+        </>
+      )}
+    </Box>
   );
 };
 export default Main;
