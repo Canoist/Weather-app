@@ -15,7 +15,7 @@ import * as React from "react";
 import AppBarButton from "./appBarButton";
 import AppBarUserInfo from "./appBarUserInfo";
 
-const pages = ["Main", "Login", "Other"];
+const tabs = ["Main", "Favorites"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -39,7 +39,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            LOGO
+            CANOIST
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -71,9 +71,9 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" }
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {tabs.map((tab) => (
+                <MenuItem key={tab} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{tab}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -84,13 +84,13 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO
+            CANOIST
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {tabs.map((tab) => (
               <AppBarButton
-                key={page}
-                page={page}
+                key={tab}
+                page={tab}
                 onClickCloseMenu={handleCloseNavMenu}
               />
             ))}
