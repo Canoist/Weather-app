@@ -5,6 +5,7 @@ import ResponsiveAppBar from "./components/responsiveAppBar";
 import Login from "./layouts/login";
 import Main from "./layouts/main";
 import Favorites from "./layouts/favorites";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" exact component={Main} />
         <Redirect to="/" />
       </Switch>
+      <Footer />
     </>
   );
 }
