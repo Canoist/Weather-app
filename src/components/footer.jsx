@@ -53,6 +53,7 @@ const Footer = () => {
           href="https://www.flaticon.com/ru/authors/pomicon"
           color="inherit"
           title="Pomicon"
+          target="blank"
         >
           Pomicon
         </Link>
