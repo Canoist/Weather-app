@@ -1,25 +1,24 @@
 import {
   AppBar,
-  // Avatar,
   Box,
   Container,
   IconButton,
-  Menu,
-  MenuItem,
+  //   Menu,
+  //   MenuItem,
   Toolbar,
-  // Tooltip,
   Typography
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import * as React from "react";
+import React, { useState } from "react";
 import AppBarButton from "./appBarButton";
 import AppBarUserInfo from "./appBarUserInfo";
+import LeftDrawer from "./leftDrawer";
 
 const tabs = ["Main", "Favorites"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Logout"];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -53,30 +52,11 @@ const ResponsiveAppBar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left"
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left"
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" }
-              }}
-            >
-              {tabs.map((tab) => (
-                <MenuItem key={tab} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{tab}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            <LeftDrawer
+              tabs={tabs}
+              closeDrawer={handleCloseNavMenu}
+              isOpenedDrawer={Boolean(anchorElNav)}
+            />
           </Box>
           <Typography
             variant="h6"
@@ -95,7 +75,11 @@ const ResponsiveAppBar = () => {
               />
             ))}
           </Box>
-          <AppBarUserInfo settings={settings} login={false} />
+          <AppBarUserInfo
+            onClickCloseMenu={handleCloseNavMenu}
+            settings={settings}
+            login={true}
+          />
         </Toolbar>
       </Container>
     </AppBar>

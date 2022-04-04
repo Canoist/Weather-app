@@ -6,11 +6,7 @@ import {
   IconButton,
   InputAdornment,
   TextField,
-  Checkbox,
-  FormControlLabel,
-  Link,
-  FormControl,
-  FormHelperText
+  Link
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -44,35 +40,6 @@ const ValidateForm = ({ toggleForm }) => {
   };
 
   console.log("ERRORS: ", errors);
-
-  const handleClickOnLink = (event) => {
-    event.preventDefault();
-    console.log("Go to Link");
-  };
-
-  const legacyLabel = (
-    <>
-      <span>I agree to the </span>
-      <Link
-        href="#"
-        color="inherit"
-        underline="always"
-        onClick={handleClickOnLink}
-      >
-        terms of service
-      </Link>
-      <span>, </span>
-      <Link
-        href="#"
-        color="inherit"
-        underline="always"
-        onClick={handleClickOnLink}
-      >
-        privacy policy
-      </Link>
-      <span>.</span>
-    </>
-  );
 
   return (
     <Box
@@ -164,61 +131,11 @@ const ValidateForm = ({ toggleForm }) => {
           required: { value: true, message: "Поле обязательно для заполнения" },
 
           pattern: {
-            value: /^\S+@\S+$/i,
+            value: /^\S+@\S+\.\S+$/i,
             message: "Email введен некорректно. Шаблон abc@abc.com"
           }
         })}
       />
-      <TextField
-        error={errors.Phone}
-        helperText={errors.Phone ? errors.Phone.message : null}
-        id="Phone"
-        label="Phone"
-        placeholder="+1(XXX)XXX-XXXX"
-        variant="standard"
-        margin="normal"
-        type="tel"
-        {...register("Phone", {
-          required: {
-            value: true,
-            message: "Поле обязательно для заполнения"
-          },
-          minLength: {
-            value: 6,
-            message: "Не менее 6 и не более 14 символов" // JS only: <p>error message</p> TS only support string\
-          },
-
-          maxLength: 15,
-          pattern: {
-            // eslint-disable-next-line no-useless-escape
-            value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
-            message: `Телефон не соответсвует шаблону.
-              Шаблоны: +79261234567, 89261234567, 8(926)123-45-67, (495) 123 45 67, 8 927 1234 234 и пр.`
-          }
-        })}
-      />
-      <FormControl error={errors.License} margin="normal">
-        <FormControlLabel
-          control={
-            <Checkbox
-              {...register("License", {
-                required: {
-                  value: true,
-                  message: "Необходимо ваше согласие"
-                }
-              })}
-              defaultChecked
-            />
-          }
-          sx={{
-            color: "black"
-          }}
-          label={legacyLabel}
-        />
-        {errors.License && (
-          <FormHelperText>{errors.License.message}</FormHelperText>
-        )}
-      </FormControl>
       <Button
         variant="contained"
         type="submit"

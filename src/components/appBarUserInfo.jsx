@@ -9,8 +9,9 @@ import {
   Tooltip,
   Typography
 } from "@mui/material";
+import AppBarButton from "./appBarButton";
 
-const AppBarUserInfo = ({ settings, login }) => {
+const AppBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -53,7 +54,7 @@ const AppBarUserInfo = ({ settings, login }) => {
           </Menu>
         </>
       ) : (
-        <h2>No user</h2>
+        <AppBarButton page="Login" />
       )}
     </Box>
   );
@@ -61,7 +62,8 @@ const AppBarUserInfo = ({ settings, login }) => {
 
 AppBarUserInfo.propTypes = {
   settings: PropTypes.array,
-  login: PropTypes.bool
+  login: PropTypes.bool,
+  onClickCloseMenu: PropTypes.func
 };
 
 export default AppBarUserInfo;

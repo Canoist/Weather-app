@@ -12,7 +12,7 @@ function App() {
       <ResponsiveAppBar />
       <Switch>
         <Route path="/login/:type?" component={Login} />
-        <Route path="/other" component={Favorites} />
+        <Route path="/favorites" component={Favorites} />
         <Route path="/" exact component={Main} />
         <Redirect to="/" />
       </Switch>
