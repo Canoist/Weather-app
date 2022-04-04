@@ -3,14 +3,18 @@ import PropTypes from "prop-types";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const AppBarButton = ({ page, onClickCloseMenu }) => {
+const AppBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
   return (
     <Button
       onClick={onClickCloseMenu}
-      sx={{ my: 2, color: "white", display: "block" }}
+      sx={{ my: 2, color: "white", display: "block", ...otherStyles }}
     >
       <Link
-        style={{ textDecoration: "none", color: "white" }}
+        style={{
+          textDecoration: "none",
+          color: "white",
+          textAlign: "center"
+        }}
         to={`/${page !== "Main" ? page.toLowerCase() : ""}`}
       >
         {page}
@@ -21,7 +25,8 @@ const AppBarButton = ({ page, onClickCloseMenu }) => {
 
 AppBarButton.propTypes = {
   page: PropTypes.string,
-  onClickCloseMenu: PropTypes.func
+  onClickCloseMenu: PropTypes.func,
+  otherStyles: PropTypes.object
 };
 
 export default AppBarButton;
