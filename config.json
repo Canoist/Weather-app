@@ -1,4 +1,5 @@
 {
-  "API_KEY": "faecc97d406cff294dc52f98401b6587",
-  "apiEndPoint": "https://api.openweathermap.org/data/2.5/onecall?lang=ru&units=metric"
+    "API_KEY": "faecc97d406cff294dc52f98401b6587",
+    "apiEndPointGeo": "https://api.openweathermap.org/data/2.5/onecall?lang=ru&units=metric",
+    "apiEndPointWeather": "http://api.openweathermap.org/geo/1.0/direct?limit=5"
 }

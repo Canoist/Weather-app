@@ -8,18 +8,18 @@ import Favorites from "./layouts/favorites";
 import Footer from "./components/footer";
 
 function App() {
-  return (
-    <>
-      <ResponsiveAppBar />
-      <Switch>
-        <Route path="/login/:type?" component={Login} />
-        <Route path="/favorites" component={Favorites} />
-        <Route path="/" exact component={Main} />
-        <Redirect to="/" />
-      </Switch>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <ResponsiveAppBar />
+            <Switch>
+                <Route path="/login/:type?" component={Login} />
+                <Route path="/favorites" component={Favorites} />
+                <Route path="/" exact component={Main} />
+                <Redirect to="/" />
+            </Switch>
+            <Footer />
+        </>
+    );
 }
 
 export default App;
