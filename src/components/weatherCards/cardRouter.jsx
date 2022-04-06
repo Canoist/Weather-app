@@ -8,7 +8,7 @@ import CardSnowRain from "./cardSnowRain";
 import CardCloudyRain from "./cardCloudyRain";
 
 const CardRouter = ({ api }) => {
-    console.log(api);
+    // console.log(api);
     //   const clouds = api.clouds.all;
     //   const rain = Object.keys(api.rain).length;
     //   const temp = api.main.temp;
