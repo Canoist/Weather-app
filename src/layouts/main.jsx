@@ -10,17 +10,16 @@ import React, { useState } from "react";
 import CardWeather from "../components/weatherCards/cardWeather";
 
 import apiData from "../examples/API.example.json";
-import getWeatherService from "../services/getWeatherService";
+import getGeolocationService from "../services/getGeolocationService";
 
 const Main = () => {
     const [city, setCity] = useState("");
     const handleChange = (e) => {
         setCity(e.target.value);
-        console.log(e.target.value);
     };
     async function getData(data) {
         try {
-            const content = await getWeatherService.get(data);
+            const content = await getGeolocationService.get(data);
             console.log(content);
         } catch (error) {
             console.log(error.message);
@@ -28,7 +27,13 @@ const Main = () => {
     }
     return (
         <Container maxWidth="xl">
-            <Box>
+            <Box
+                component="form"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    getData(city);
+                }}
+            >
                 <FormControl fullWidth sx={{ m: 1 }}>
                     <InputLabel htmlFor="search">Поиск</InputLabel>
                     <OutlinedInput
@@ -37,6 +42,9 @@ const Main = () => {
                         onChange={handleChange}
                         label="Search"
                     />
+                    <Button fullWidth={false} variant="contained" type="submit">
+                        Найти
+                    </Button>
                 </FormControl>
                 <CardWeather api={apiData} />
                 <Button

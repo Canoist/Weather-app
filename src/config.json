@@ -1,4 +1,4 @@
 {
-    "apiEndPointWeather": "https://api.openweathermap.org/data/2.5/onecall?lang=ru&units=metric&appid=faecc97d406cff294dc52f98401b6587",
+    "apiEndPointWeather": "https://api.openweathermap.org/data/2.5",
     "apiEndPointGeo": "http://api.openweathermap.org/geo/1.0"
 }
