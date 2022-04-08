@@ -17,15 +17,13 @@ http.interceptors.request.use(
             const data = await authService.refresh();
             localStorageService.setTokens(data);
         }
-
         const accessToken = localStorageService.getAccessToken();
         if (accessToken) {
-            config.params = {
-                ...config.params,
+            config.headers = {
+                ...config.headers,
                 Authorization: `Bearer ${accessToken}`
             };
         }
-
         return config;
     },
     function (error) {

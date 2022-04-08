@@ -11,8 +11,12 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/users";
 
 const ValidateForm = ({ toggleForm }) => {
+    const dispatch = useDispatch();
+
     const [showPassword, setShowPassword] = useState(false);
 
     const {
@@ -28,18 +32,10 @@ const ValidateForm = ({ toggleForm }) => {
 
     const onSubmit = (data) => {
         console.log("SUBMIT", data);
-        const usersPrev = JSON.parse(localStorage.getItem("users"));
-        localStorage.setItem(
-            "users",
-            JSON.stringify(
-                usersPrev
-                    ? [...usersPrev, { ...data, _id: Date.now() }]
-                    : [{ ...data, _id: Date.now() }]
-            )
-        );
+        dispatch(signUp(data));
     };
 
-    console.log("ERRORS: ", errors);
+    // console.log("ERRORS: ", errors);
 
     return (
         <Box
@@ -114,7 +110,10 @@ const ValidateForm = ({ toggleForm }) => {
                         value: true,
                         message: "Поле обязательно для заполнения"
                     },
-                    minLength: 7,
+                    minLength: {
+                        value: 8,
+                        message: "Минимальная длина пароля 8 символов"
+                    },
                     pattern: /\d+/g
                 })}
                 InputProps={{

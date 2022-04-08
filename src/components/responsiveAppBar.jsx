@@ -91,7 +91,7 @@ const ResponsiveAppBar = () => {
                     <AppBarUserInfo
                         onClickCloseMenu={handleCloseNavMenu}
                         settings={settings}
-                        login={true}
+                        login={false}
                     />
                 </Toolbar>
             </Container>
