@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Divider, Drawer, List, ListItemText } from "@mui/material";
-import AppBarButton from "./navBarButton";
+import NavBarButton from "./navBarButton";
 
 const LeftDrawer = ({ isOpenedDrawer, closeDrawer, tabs }) => {
     return (
@@ -18,7 +18,7 @@ const LeftDrawer = ({ isOpenedDrawer, closeDrawer, tabs }) => {
             <List sx={{ width: { xs: "120px", sm: "180px", md: "none" } }}>
                 {tabs.map((tab) => (
                     <ListItemText key={tab}>
-                        <AppBarButton
+                        <NavBarButton
                             otherStyles={{ width: "100%" }}
                             page={tab}
                             onClickCloseMenu={closeDrawer}

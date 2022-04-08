@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/navBar";
 import Login from "./layouts/login";
 import Main from "./layouts/main";
 import Favorites from "./layouts/favorites";
 import Footer from "./components/footer";
+import NavBar from "./components/navBar/navBar";
 
 function App() {
     return (

@@ -1,17 +1,19 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import LeftDrawer from "./leftDrawer";
 import PropTypes from "prop-types";
 
-const NavBarDesktop = ({ tabs, onClickOpen, onClickClose, anchor }) => {
+const NavBarMobile = ({ tabs, onClickOpen, onClickClose }) => {
     return (
         <>
             <Typography
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                sx={{
+                    flexGrow: 1,
+                    display: { xs: "flex", md: "none" }
+                }}
             >
                 Weather Forecast
             </Typography>
@@ -31,21 +33,15 @@ const NavBarDesktop = ({ tabs, onClickOpen, onClickClose, anchor }) => {
                 >
                     <MenuIcon />
                 </IconButton>
-                <LeftDrawer
-                    tabs={tabs}
-                    closeDrawer={onClickClose}
-                    isOpenedDrawer={Boolean(anchor)}
-                />
             </Box>
         </>
     );
 };
 
-NavBarDesktop.propTypes = {
+NavBarMobile.propTypes = {
     tabs: PropTypes.array,
     onClickOpen: PropTypes.func,
-    onClickClose: PropTypes.func,
-    anchor: PropTypes.object
+    onClickClose: PropTypes.func
 };
 
-export default NavBarDesktop;
+export default NavBarMobile;

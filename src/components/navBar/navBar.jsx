@@ -1,0 +1,52 @@
+import { AppBar, Container, Toolbar } from "@mui/material";
+import React, { useState } from "react";
+import LeftDrawer from "./leftDrawer";
+import NavBarDesktop from "./navBarDesktop";
+import NavBarMobile from "./navBarMobile";
+import NavBarUserInfo from "./navBarUserInfo";
+
+const tabs = ["Main", "Favorites"];
+const settings = ["Profile", "Logout"];
+
+const NavBar = () => {
+    const [anchorElNav, setAnchorElNav] = useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        console.log(event);
+        setAnchorElNav(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    return (
+        <AppBar position="static" sx={{ mb: "18px" }}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <NavBarDesktop
+                        tabs={tabs}
+                        onClickOpen={handleOpenNavMenu}
+                        onClickClose={handleCloseNavMenu}
+                    />
+                    <NavBarMobile
+                        tabs={tabs}
+                        onClickOpen={handleOpenNavMenu}
+                        onClickClose={handleCloseNavMenu}
+                    />
+                    <LeftDrawer
+                        tabs={tabs}
+                        closeDrawer={handleCloseNavMenu}
+                        isOpenedDrawer={Boolean(anchorElNav)}
+                    />
+                    <NavBarUserInfo
+                        onClickCloseMenu={handleCloseNavMenu}
+                        settings={settings}
+                        login={false}
+                    />
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
+};
+export default NavBar;
