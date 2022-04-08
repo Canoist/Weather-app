@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import ResponsiveAppBar from "./components/responsiveAppBar";
+import NavBar from "./components/navBar";
 import Login from "./layouts/login";
 import Main from "./layouts/main";
 import Favorites from "./layouts/favorites";
@@ -10,7 +10,7 @@ import Footer from "./components/footer";
 function App() {
     return (
         <>
-            <ResponsiveAppBar />
+            <NavBar />
             <Switch>
                 <Route path="/login/:type?" component={Login} />
                 <Route path="/favorites" component={Favorites} />

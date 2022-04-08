@@ -9,9 +9,9 @@ import {
     Tooltip,
     Typography
 } from "@mui/material";
-import AppBarButton from "./appBarButton";
+import NavBarButton from "./navBarButton";
 
-const AppBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
+const NavBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleOpenUserMenu = (event) => {
@@ -62,16 +62,16 @@ const AppBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
                     </Menu>
                 </>
             ) : (
-                <AppBarButton page="Login" />
+                <NavBarButton page="Login" />
             )}
         </Box>
     );
 };
 
-AppBarUserInfo.propTypes = {
+NavBarUserInfo.propTypes = {
     settings: PropTypes.array,
     login: PropTypes.bool,
     onClickCloseMenu: PropTypes.func
 };
 
-export default AppBarUserInfo;
+export default NavBarUserInfo;

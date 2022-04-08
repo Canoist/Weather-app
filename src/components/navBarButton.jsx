@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const AppBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
+const NavBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
     return (
         <Button
             onClick={onClickCloseMenu}
@@ -23,10 +23,10 @@ const AppBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
     );
 };
 
-AppBarButton.propTypes = {
+NavBarButton.propTypes = {
     page: PropTypes.string,
     onClickCloseMenu: PropTypes.func,
     otherStyles: PropTypes.object
 };
 
-export default AppBarButton;
+export default NavBarButton;

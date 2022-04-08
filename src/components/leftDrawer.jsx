@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Divider, Drawer, List, ListItemText } from "@mui/material";
-import AppBarButton from "./appBarButton";
+import AppBarButton from "./navBarButton";
 
 const LeftDrawer = ({ isOpenedDrawer, closeDrawer, tabs }) => {
     return (
