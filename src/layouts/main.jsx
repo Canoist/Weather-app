@@ -1,14 +1,6 @@
-import {
-    Box,
-    Button,
-    Container,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select
-} from "@mui/material";
+import { Box, Button, Container, FormControl, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import CitySelector from "../components/citySelector";
 import CardWeather from "../components/weatherCards/cardWeather";
 
 import apiData from "../examples/API.example.json";
@@ -69,52 +61,26 @@ const Main = () => {
                     getData(city);
                 }}
             >
-                <FormControl fullWidth sx={{ m: 1 }}>
-                    <InputLabel htmlFor="search">Поиск</InputLabel>
-                    <OutlinedInput
+                <FormControl sx={{ m: 1 }}>
+                    <TextField
                         id="search"
-                        value={city}
+                        type="search"
                         onChange={handleChangeCity}
                         label="Search"
+                        sx={{ mb: 1 }}
                     />
-                    <Button fullWidth={false} variant="contained" type="submit">
+                    <Button variant="contained" type="submit">
                         Найти
                     </Button>
                 </FormControl>
                 {isLoaded && (
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                            City
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            defaultValue="Выберете город..."
-                            value={currentCity}
-                            label="City"
-                            onChange={handleChangeCurrent}
-                        >
-                            {cityList.map((item) => {
-                                return (
-                                    <MenuItem
-                                        key={item.lat}
-                                        value={item.lat.toString() + item.lon}
-                                    >
-                                        {item.label}, {item.state}
-                                    </MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
+                    <CitySelector
+                        cityList={cityList}
+                        onChange={handleChangeCurrent}
+                        value={currentCity}
+                    />
                 )}
                 <CardWeather api={apiData} />
-                <Button
-                    onClick={() => {
-                        getData(city);
-                    }}
-                >
-                    Tap me!
-                </Button>
             </Box>
         </Container>
     );
