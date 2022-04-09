@@ -1,9 +1,10 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
+import LeftDrawer from "./leftDrawer";
+import NavBarButton from "./navBarButton";
 
-const NavBarMobile = ({ tabs, onClickOpen, onClickClose }) => {
+const NavBarMobile = ({ tabs, onClickOpen, onClickClose, anchor }) => {
     return (
         <>
             <Typography
@@ -20,20 +21,23 @@ const NavBarMobile = ({ tabs, onClickOpen, onClickClose }) => {
             <Box
                 sx={{
                     flexGrow: 1,
-                    display: { xs: "flex", md: "none" }
+                    display: { xs: "none", md: "flex" }
                 }}
             >
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={onClickOpen}
-                    color="inherit"
-                >
-                    <MenuIcon />
-                </IconButton>
+                {tabs.map((tab) => (
+                    <NavBarButton
+                        key={tab}
+                        page={tab}
+                        onClickCloseMenu={onClickClose}
+                    />
+                ))}
             </Box>
+
+            <LeftDrawer
+                tabs={tabs}
+                closeDrawer={onClickClose}
+                isOpenedDrawer={Boolean(anchor)}
+            />
         </>
     );
 };
@@ -41,7 +45,8 @@ const NavBarMobile = ({ tabs, onClickOpen, onClickClose }) => {
 NavBarMobile.propTypes = {
     tabs: PropTypes.array,
     onClickOpen: PropTypes.func,
-    onClickClose: PropTypes.func
+    onClickClose: PropTypes.func,
+    anchor: PropTypes.object
 };
 
 export default NavBarMobile;

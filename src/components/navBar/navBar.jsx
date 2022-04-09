@@ -1,6 +1,5 @@
 import { AppBar, Container, Toolbar } from "@mui/material";
 import React, { useState } from "react";
-import LeftDrawer from "./leftDrawer";
 import NavBarDesktop from "./navBarDesktop";
 import NavBarMobile from "./navBarMobile";
 import NavBarUserInfo from "./navBarUserInfo";
@@ -33,11 +32,7 @@ const NavBar = () => {
                         tabs={tabs}
                         onClickOpen={handleOpenNavMenu}
                         onClickClose={handleCloseNavMenu}
-                    />
-                    <LeftDrawer
-                        tabs={tabs}
-                        closeDrawer={handleCloseNavMenu}
-                        isOpenedDrawer={Boolean(anchorElNav)}
+                        anchor={anchorElNav}
                     />
                     <NavBarUserInfo
                         onClickCloseMenu={handleCloseNavMenu}

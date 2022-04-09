@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import NavBarButton from "./navBarButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const NavBarDesktop = ({ tabs, onClickOpen, onClickClose }) => {
     return (
@@ -17,16 +17,19 @@ const NavBarDesktop = ({ tabs, onClickOpen, onClickClose }) => {
             <Box
                 sx={{
                     flexGrow: 1,
-                    display: { xs: "none", md: "flex" }
+                    display: { xs: "flex", md: "none" }
                 }}
             >
-                {tabs.map((tab) => (
-                    <NavBarButton
-                        key={tab}
-                        page={tab}
-                        onClickCloseMenu={onClickClose}
-                    />
-                ))}
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={onClickOpen}
+                    color="inherit"
+                >
+                    <MenuIcon />
+                </IconButton>
             </Box>
         </>
     );

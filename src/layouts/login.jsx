@@ -17,7 +17,7 @@ const Login = () => {
         <Box
             sx={{
                 width: "100vw",
-                minHeight: "100vh",
+                minHeight: "80vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
@@ -25,7 +25,9 @@ const Login = () => {
         >
             {formType === "register" ? (
                 <>
-                    <ValidateForm toggleForm={toggleFormType} />
+                    <Box sx={{ pb: "70px" }}>
+                        <ValidateForm toggleForm={toggleFormType} />
+                    </Box>
                 </>
             ) : (
                 <>

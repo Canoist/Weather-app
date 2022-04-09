@@ -1,4 +1,3 @@
-import { DevTool } from "@hookform/devtools";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
     Box,
@@ -21,7 +20,6 @@ const ValidateForm = ({ toggleForm }) => {
 
     const {
         register,
-        control,
         handleSubmit,
         formState: { errors }
     } = useForm();
@@ -188,7 +186,6 @@ const ValidateForm = ({ toggleForm }) => {
                     Sign in
                 </Link>
             </p>
-            <DevTool control={control} /> {/* set up the dev tool */}
         </Box>
     );
 };
