@@ -20,16 +20,19 @@ const Login = () => {
     return (
         <Box
             sx={{
-                width: "100vw",
+                width: "100vw" - "18px",
                 minHeight: "80vh",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
+                "&::-webkit-scrollbar": {
+                    width: "18px"
+                }
             }}
         >
             {formType === "register" ? (
                 <>
-                    <Box sx={{ pb: "70px" }}>
+                    <Box sx={{ pb: { xs: "100px", md: "70px" } }}>
                         <RegisterForm toggleForm={toggleFormType} />
                     </Box>
                 </>

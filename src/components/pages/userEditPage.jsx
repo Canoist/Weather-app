@@ -5,6 +5,7 @@ import { getUser, updateUser } from "../../store/users";
 const UserEditPage = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(getUser());
+    console.log(currentUser);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,7 +13,7 @@ const UserEditPage = () => {
     };
     return (
         <div>
-            {currentUser}
+            <h1>EditUser</h1>
             <button onClick={handleSubmit} disabled={true}></button>
         </div>
     );

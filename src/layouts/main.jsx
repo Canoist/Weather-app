@@ -2,9 +2,8 @@ import { Box, Button, Container, FormControl, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CitySelector from "../components/citySelector";
 import CardWeather from "../components/weatherCards/cardWeather";
-
+import getGeolocationService from "../services/httpGeoService";
 import apiData from "../examples/API.example.json";
-import getGeolocationService from "../services/getGeolocationService";
 import getWeatherService from "../services/getWeatherService";
 
 const Main = () => {

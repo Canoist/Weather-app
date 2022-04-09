@@ -1,17 +1,12 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-    Box,
-    Button,
-    IconButton,
-    InputAdornment,
-    TextField,
-    Link
-} from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthErrors, signUp } from "../../store/users";
+import LinkToForm from "./linkToForm";
+import TitleForm from "./titleForm";
+import Adornment from "./adornment";
 
 const RegisterForm = ({ toggleForm }) => {
     const dispatch = useDispatch();
@@ -55,18 +50,11 @@ const RegisterForm = ({ toggleForm }) => {
                 pt: 3,
                 pb: 1,
                 zIndex: "tooltip", // theme.zIndex.tooltip
-                width: "470px"
+                width: { xs: "220px", sm: "430px", md: "480px" }
             }}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <h3
-                style={{
-                    fontWeight: "bold",
-                    color: "#23252E"
-                }}
-            >
-                Welcome to weather forecast
-            </h3>
+            <TitleForm />
             <TextField
                 error={!!errors.firstname}
                 id="firstname"
@@ -117,19 +105,10 @@ const RegisterForm = ({ toggleForm }) => {
                 })}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                edge="end"
-                            >
-                                {showPassword ? (
-                                    <Visibility />
-                                ) : (
-                                    <VisibilityOff />
-                                )}
-                            </IconButton>
-                        </InputAdornment>
+                        <Adornment
+                            showPassword={showPassword}
+                            onClick={handleClickShowPassword}
+                        />
                     ),
                     type: showPassword ? "text" : "password"
                 }}
@@ -149,7 +128,6 @@ const RegisterForm = ({ toggleForm }) => {
                         value: true,
                         message: "Поле обязательно для заполнения"
                     },
-
                     pattern: {
                         value: /^\S+@\S+\.\S+$/i,
                         message: "Email введен некорректно. Шаблон abc@abc.com"
@@ -167,28 +145,7 @@ const RegisterForm = ({ toggleForm }) => {
             >
                 Зарегистрироваться
             </Button>
-            <p
-                align="center"
-                style={{
-                    fontWeight: "normal",
-                    color: "#23252E"
-                }}
-            >
-                Уже есть аккаунт?{" "}
-                <Link
-                    variant="button"
-                    underline="always"
-                    onClick={toggleForm}
-                    style={{
-                        fontWeight: "normal",
-                        cursor: "pointer",
-                        color: "#23252E"
-                    }}
-                >
-                    {" "}
-                    Войти
-                </Link>
-            </p>
+            <LinkToForm forSignIn={false} toggleForm={toggleForm} />
         </Box>
     );
 };
