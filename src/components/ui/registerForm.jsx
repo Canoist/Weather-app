@@ -7,7 +7,7 @@ import {
     TextField,
     Link
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +15,8 @@ import { getAuthErrors, signUp } from "../../store/users";
 
 const RegisterForm = ({ toggleForm }) => {
     const dispatch = useDispatch();
-
     const [showPassword, setShowPassword] = useState(false);
+    const [authError, setAuthError] = useState(null);
 
     const {
         register,
@@ -24,7 +24,10 @@ const RegisterForm = ({ toggleForm }) => {
         formState: { errors }
     } = useForm();
 
-    const authError = useSelector(getAuthErrors());
+    const loginError = useSelector(getAuthErrors());
+    useEffect(() => {
+        setAuthError(loginError);
+    }, [loginError]);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);

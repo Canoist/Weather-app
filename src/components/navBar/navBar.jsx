@@ -37,7 +37,6 @@ const NavBar = () => {
                     <NavBarUserInfo
                         onClickCloseMenu={handleCloseNavMenu}
                         settings={settings}
-                        login={false}
                     />
                 </Toolbar>
             </Container>

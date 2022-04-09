@@ -46,12 +46,6 @@ const usersSlice = createSlice({
         authRequestFailed: (state, action) => {
             state.error = action.payload;
         },
-        userCreated: (state, action) => {
-            if (!Array.isArray(state.entities)) {
-                state.entities = [];
-            }
-            state.entities.push(action.payload);
-        },
         userLoggedOut: (state) => {
             state.entities = null;
             state.isLoggedIn = false;
@@ -93,10 +87,13 @@ export const signUp = (payload) => async (dispatch) => {
         const data = await authService.register(payload);
         localStorageService.setTokens(data);
         dispatch(authRequestSuccess({ userId: data.userId }));
+        history.push("/");
+        const user = await userService.getCurrentUser();
+        console.log(user);
+        dispatch(usersRecieved(user));
     } catch (error) {
         const { code, message } = error.response.data.error;
         if (code === 400) {
-            console.log(message);
             const errorMessage = generateAuthError(message);
             dispatch(authRequestFailed(errorMessage));
         } else {
@@ -116,6 +113,9 @@ export const logIn =
             dispatch(authRequestSuccess({ userId: data.userId }));
             history.push(redirect);
             console.log(data);
+            const user = await userService.getCurrentUser();
+            console.log(user);
+            dispatch(usersRecieved(user));
         } catch (error) {
             const { code, message } = error.response.data.error;
             if (code === 400) {
@@ -133,11 +133,11 @@ export const logOut = () => (dispatch) => {
     history.push("/");
 };
 
-export const loadUsersList = () => async (dispatch, getState) => {
+export const loadUser = () => async (dispatch) => {
     dispatch(usersRequested());
     try {
-        const { content } = await userService.get();
-        dispatch(usersRecieved(content));
+        const user = await userService.get();
+        dispatch(usersRecieved(user));
     } catch (error) {
         dispatch(usersRequestFailed(error.message));
     }
@@ -146,15 +146,15 @@ export const loadUsersList = () => async (dispatch, getState) => {
 export const updateUser = (payload) => async (dispatch) => {
     dispatch(userUpdateRequested());
     try {
-        const { content } = await userService.patch(payload);
-        dispatch(userUpdated(content));
-        history.push(`/users/${content._id}`);
+        const data = await userService.patch(payload);
+        dispatch(userUpdated(data));
+        history.push(`/favotites`);
     } catch (error) {
         dispatch(userUpdateFailed(error.message));
     }
 };
 
-export function getUsers() {
+export function getUser() {
     return function (state) {
         return state.users.entities;
     };
@@ -163,16 +163,6 @@ export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getDataStatus = () => (state) => state.users.dataLoaded;
 export const getCurrentUserId = () => (state) => state.users.auth.userId;
-export const getUserById = (userId) => (state) => {
-    if (state.users.entities) {
-        return state.users.entities.find((u) => u._id === userId);
-    }
-};
-export const getCurrentUserData = () => (state) => {
-    return state.users.entities
-        ? state.users.entities.find((u) => u._id === state.users.auth.userId)
-        : null;
-};
 export const getAuthErrors = () => (state) => state.users.error;
 export const resetAuthErrors = () => (dispatch) => dispatch(authRequested());
 export default usersReducer;

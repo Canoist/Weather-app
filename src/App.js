@@ -6,18 +6,21 @@ import Main from "./layouts/main";
 import Favorites from "./layouts/favorites";
 import Footer from "./components/footer";
 import NavBar from "./components/navBar/navBar";
+import AppLoader from "./components/ui/hoc/appLoader";
 
 function App() {
     return (
         <>
-            <NavBar />
-            <Switch>
-                <Route path="/login/:type?" component={Login} />
-                <Route path="/favorites" component={Favorites} />
-                <Route path="/" exact component={Main} />
-                <Redirect to="/" />
-            </Switch>
-            <Footer />
+            <AppLoader>
+                <NavBar />
+                <Switch>
+                    <Route path="/login/:type?" component={Login} />
+                    <Route path="/favorites" component={Favorites} />
+                    <Route path="/" exact component={Main} />
+                    <Redirect to="/" />
+                </Switch>
+                <Footer />
+            </AppLoader>
         </>
     );
 }

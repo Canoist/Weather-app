@@ -10,25 +10,35 @@ import {
     Typography
 } from "@mui/material";
 import NavBarButton from "./navBarButton";
+import { useSelector } from "react-redux";
+import { getUser, getIsLoggedIn } from "../../store/users";
+import { useHistory } from "react-router-dom";
 
-const NavBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
+const NavBarUserInfo = ({ settings, onClickCloseMenu }) => {
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const isLoggedIn = useSelector(getIsLoggedIn());
+    const currentUser = useSelector(getUser());
+    const history = useHistory();
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = ({ target }) => {
+        console.log(target.id);
+        if (target.id === "Profile") {
+            history.push("/");
+        }
         setAnchorElUser(null);
     };
 
     return (
         <Box sx={{ flexGrow: 0 }}>
-            {login ? (
+            {isLoggedIn ? (
                 <>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                             <Avatar
-                                alt="Remy Sharp"
+                                alt={`${currentUser.firstname} ${currentUser.lastname}`}
                             />
                         </IconButton>
                     </Tooltip>
@@ -46,14 +56,14 @@ const NavBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
                             horizontal: "right"
                         }}
                         open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}
+                        onClose={onClickCloseMenu}
                     >
                         {settings.map((setting) => (
                             <MenuItem
                                 key={setting}
                                 onClick={handleCloseUserMenu}
                             >
-                                <Typography textAlign="center">
+                                <Typography textAlign="center" id={setting}>
                                     {setting}
                                 </Typography>
                             </MenuItem>
@@ -69,7 +79,6 @@ const NavBarUserInfo = ({ settings, login, onClickCloseMenu }) => {
 
 NavBarUserInfo.propTypes = {
     settings: PropTypes.array,
-    login: PropTypes.bool,
     onClickCloseMenu: PropTypes.func
 };
 
