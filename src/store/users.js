@@ -174,5 +174,5 @@ export const getCurrentUserData = () => (state) => {
         : null;
 };
 export const getAuthErrors = () => (state) => state.users.error;
-
+export const resetAuthErrors = () => (dispatch) => dispatch(authRequested());
 export default usersReducer;

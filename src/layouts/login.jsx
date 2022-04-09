@@ -3,14 +3,18 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SignInForm from "../components/ui/signInForm";
 import RegisterForm from "../components/ui/registerForm";
+import { useDispatch } from "react-redux";
+import { resetAuthErrors } from "../store/users";
 
 const Login = () => {
     const { type } = useParams();
+    const dispatch = useDispatch();
     const [formType, setFormType] = useState(
         type === "register" ? type : "login"
     );
     const toggleFormType = () => {
         setFormType((prev) => (prev === "register" ? "login" : "register"));
+        dispatch(resetAuthErrors());
     };
 
     return (
