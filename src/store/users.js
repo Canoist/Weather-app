@@ -3,6 +3,7 @@ import authService from "../services/authService";
 import localStorageService from "../services/localStorageService";
 import userService from "../services/userService";
 import { generateAuthError } from "../utils/generateAuthError";
+import history from "../utils/history";
 
 const initialState = localStorageService.getAccessToken()
     ? {
@@ -114,6 +115,7 @@ export const logIn =
             localStorageService.setTokens(data);
             dispatch(authRequestSuccess({ userId: data.userId }));
             history.push(redirect);
+            console.log(data);
         } catch (error) {
             const { code, message } = error.response.data.error;
             if (code === 400) {

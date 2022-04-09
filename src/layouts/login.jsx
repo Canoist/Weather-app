@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SignInForm from "../components/ui/signInForm";
-import ValidateForm from "../components/ui/validateForm";
+import RegisterForm from "../components/ui/registerForm";
 
 const Login = () => {
     const { type } = useParams();
@@ -26,7 +26,7 @@ const Login = () => {
             {formType === "register" ? (
                 <>
                     <Box sx={{ pb: "70px" }}>
-                        <ValidateForm toggleForm={toggleFormType} />
+                        <RegisterForm toggleForm={toggleFormType} />
                     </Box>
                 </>
             ) : (

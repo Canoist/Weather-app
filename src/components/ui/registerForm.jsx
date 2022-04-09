@@ -10,10 +10,10 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../store/users";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthErrors, signUp } from "../../store/users";
 
-const ValidateForm = ({ toggleForm }) => {
+const RegisterForm = ({ toggleForm }) => {
     const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -23,6 +23,8 @@ const ValidateForm = ({ toggleForm }) => {
         handleSubmit,
         formState: { errors }
     } = useForm();
+
+    const authError = useSelector(getAuthErrors());
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -63,15 +65,13 @@ const ValidateForm = ({ toggleForm }) => {
                 Welcome to weather forecast
             </h3>
             <TextField
-                error={errors["First name"]}
-                id="First Name"
-                label="First Name"
+                error={!!errors.firstname}
+                id="firstname"
+                label="Имя"
                 variant="standard"
                 margin="normal"
-                helperText={
-                    errors["First name"] ? errors["First name"].message : null
-                }
-                {...register("First name", {
+                helperText={errors.firstname ? errors.firstname.message : null}
+                {...register("firstname", {
                     required: {
                         value: true,
                         message: "Поле обязательно для заполнения"
@@ -80,15 +80,13 @@ const ValidateForm = ({ toggleForm }) => {
                 })}
             />
             <TextField
-                error={errors["Last name"]}
-                helperText={
-                    errors["Last name"] ? errors["Last name"].message : null
-                }
-                id="Last Name"
-                label="Last Name"
+                error={!!errors.lastname}
+                helperText={errors.lastname ? errors.lastname.message : null}
+                id="lastname"
+                label="Фамилия"
                 variant="standard"
                 margin="normal"
-                {...register("Last name", {
+                {...register("lastname", {
                     required: {
                         value: true,
                         message: "Поле обязательно для заполнения"
@@ -97,20 +95,20 @@ const ValidateForm = ({ toggleForm }) => {
                 })}
             />
             <TextField
-                error={errors.Password}
-                helperText={errors.Password ? errors.Password.message : null}
-                id="Password"
-                label="Password"
+                error={!!errors.password}
+                helperText={errors.password ? errors.password.message : null}
+                id="password"
+                label="Пароль"
                 variant="standard"
                 margin="normal"
-                {...register("Password", {
+                {...register("password", {
                     required: {
                         value: true,
                         message: "Поле обязательно для заполнения"
                     },
                     minLength: {
-                        value: 8,
-                        message: "Минимальная длина пароля 8 символов"
+                        value: 7,
+                        message: "Минимальная длина пароля 7 символов"
                     },
                     pattern: /\d+/g
                 })}
@@ -134,14 +132,16 @@ const ValidateForm = ({ toggleForm }) => {
                 }}
             />
             <TextField
-                error={errors.Email}
-                helperText={errors.Email ? errors.Email.message : null}
-                id="Email"
-                label="Email"
+                error={!!errors.email || !!authError}
+                helperText={
+                    errors.email ? errors.email.message : authError || null
+                }
+                id="email"
+                label="Электронная почта"
                 placeholder="abc@box.com"
                 variant="standard"
                 margin="normal"
-                {...register("Email", {
+                {...register("email", {
                     required: {
                         value: true,
                         message: "Поле обязательно для заполнения"
@@ -162,7 +162,7 @@ const ValidateForm = ({ toggleForm }) => {
                     mb: 1
                 }}
             >
-                Register
+                Зарегистрироваться
             </Button>
             <p
                 align="center"
@@ -171,7 +171,7 @@ const ValidateForm = ({ toggleForm }) => {
                     color: "#23252E"
                 }}
             >
-                Already have account?{" "}
+                Уже есть аккаунт?{" "}
                 <Link
                     variant="button"
                     underline="always"
@@ -183,14 +183,14 @@ const ValidateForm = ({ toggleForm }) => {
                     }}
                 >
                     {" "}
-                    Sign in
+                    Войти
                 </Link>
             </p>
         </Box>
     );
 };
-export default ValidateForm;
+export default RegisterForm;
 
-ValidateForm.propTypes = {
+RegisterForm.propTypes = {
     toggleForm: PropTypes.func
 };

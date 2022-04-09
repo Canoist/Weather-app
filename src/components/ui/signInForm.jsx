@@ -7,22 +7,43 @@ import {
     TextField,
     Link
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthErrors, logIn } from "../../store/users";
+import { useHistory } from "react-router-dom";
 
 const SignInForm = ({ toggleForm }) => {
+    const history = useHistory();
     const [showPassword, setShowPassword] = useState(false);
-    const [errors, setErrors] = useState({});
+    const [error, setError] = useState(null);
+    const [data, setData] = useState({
+        email: "",
+        password: "",
+        stayOn: false
+    });
+    const dispatch = useDispatch();
+    const loginError = useSelector(getAuthErrors());
+
+    const handleChange = ({ target }) => {
+        setData((prev) => ({ ...prev, [target.id]: target.value }));
+        setError(null);
+    };
+
+    useEffect(() => {
+        setError(loginError);
+    }, [loginError]);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleSubmit = (data) => {
-        console.log("SUBMIT", data);
-        const users = JSON.parse(localStorage.getItem("users"));
-        console.log(users);
-        setErrors({});
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const redirect = history.location.state
+            ? history.location.state.from.pathname
+            : "/";
+        dispatch(logIn({ payload: data, redirect }));
     };
 
     return (
@@ -53,21 +74,23 @@ const SignInForm = ({ toggleForm }) => {
                 Welcome to weather forecast
             </h3>
             <TextField
-                error={errors.Email}
-                helperText={errors.Email ? errors.Email.message : null}
-                id="Email"
+                error={!!error}
+                helperText={error || null}
+                id="email"
                 label="Email"
                 placeholder="Youre email"
                 variant="standard"
                 margin="normal"
+                onChange={handleChange}
             />
             <TextField
-                error={errors.Password}
-                helperText={errors.Password ? errors.Password.message : null}
-                id="Password"
+                error={!!error}
+                helperText={error || null}
+                id="password"
                 label="Password"
                 variant="standard"
                 margin="normal"
+                onChange={handleChange}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -87,6 +110,7 @@ const SignInForm = ({ toggleForm }) => {
                     type: showPassword ? "text" : "password"
                 }}
             />
+
             <Button
                 variant="contained"
                 type="submit"
