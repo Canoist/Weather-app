@@ -18,6 +18,7 @@ const Main = () => {
     const [currentCity, setCurrentCity] = useState("");
     const [cityName, setCityName] = useState("");
     const [cityList, setCityList] = useState([]);
+    const [currentDate, setCurrentDate] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [isLoadWeather, setIsLoadWeather] = useState(false);
     const [weather, setWeather] = useState(false);
@@ -45,7 +46,6 @@ const Main = () => {
         setIsLoadWeather(true);
         try {
             const weather = await getWeatherService.get(data);
-
             return weather;
         } catch (error) {
             console.log(error.message);
@@ -66,6 +66,7 @@ const Main = () => {
             console.log(currentWeather);
             setCityName(currentCity.split("_")[0]);
             setWeather(currentWeather);
+            setCurrentDate(Date(parseInt(currentWeather.current.dt * 1000)));
         }
     }, [currentCity]);
 
@@ -105,6 +106,7 @@ const Main = () => {
                         name={cityName}
                     />
                 )}
+                {currentDate}
             </Box>
         </Container>
     );
