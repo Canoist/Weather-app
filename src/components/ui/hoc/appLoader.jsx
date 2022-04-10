@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,6 +6,7 @@ import {
     getUsersLoadingStatus,
     loadUser
 } from "../../../store/users";
+import { CircularProgress } from "@mui/material";
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const AppLoader = ({ children }) => {
             dispatch(loadUser());
         }
     }, [isLoggedIn]);
-    if (usersStatusLoading) return "Loading...";
+    if (usersStatusLoading) return <CircularProgress />;
     return children;
 };
 

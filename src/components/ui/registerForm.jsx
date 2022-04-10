@@ -50,7 +50,7 @@ const RegisterForm = ({ toggleForm }) => {
                 px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
                 pt: 3,
                 pb: 1,
-                zIndex: "tooltip", // theme.zIndex.tooltip
+                zIndex: "fab", // theme.zIndex.tooltip
                 width: { xs: "220px", sm: "430px", md: "480px" }
             }}
             onSubmit={handleSubmit(onSubmit)}

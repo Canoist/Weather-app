@@ -19,7 +19,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ mb: "18px" }}>
+        <AppBar position="static" sx={{ mb: "18px", px: "15px" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <NavBarDesktop
@@ -33,10 +33,7 @@ const NavBar = () => {
                         onClickClose={handleCloseNavMenu}
                         anchor={anchorElNav}
                     />
-                    <NavBarUserInfo
-                        onClickCloseMenu={handleCloseNavMenu}
-                        settings={settings}
-                    />
+                    <NavBarUserInfo settings={settings} />
                 </Toolbar>
             </Container>
         </AppBar>
