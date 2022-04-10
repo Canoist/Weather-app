@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Box, CardMedia, SvgIcon, Typography } from "@mui/material";
 
 const CardWind = ({ data }) => {
-    const hardWind = Math.trunc(data.wind.speed) > 8;
+    const hardWind = Math.trunc(data.wind_speed) > 8;
     return (
         <Box
             sx={
@@ -65,7 +65,7 @@ const CardWind = ({ data }) => {
                     strokeWidth="2"
                     sx={{
                         fontSize: "36px",
-                        transform: `rotate(${data.wind.deg}deg)`
+                        transform: `rotate(${data.wind_deg}deg)`
                     }}
                 >
                     <path
@@ -75,7 +75,8 @@ const CardWind = ({ data }) => {
                     />
                 </SvgIcon>
             </Box>
-            {Math.trunc(data.wind.speed)} м/с
+            {Math.trunc(data.wind_speed) > 0 ? Math.trunc(data.wind_speed) : 1}{" "}
+            м/с
         </Box>
     );
 };

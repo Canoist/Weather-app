@@ -12,7 +12,6 @@ const NavBarUserInfo = ({ settings }) => {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const isLoggedIn = useSelector(getDataStatus());
     const currentUser = useSelector(getUser());
-    console.log("USER", currentUser);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);

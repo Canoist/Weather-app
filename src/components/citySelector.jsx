@@ -20,7 +20,9 @@ const CitySelector = ({ value, onChange, cityList }) => {
                     return (
                         <MenuItem
                             key={item.lat}
-                            value={item.lat.toString() + item.lon}
+                            value={`${item.label}_${item.lat.toString()}${
+                                item.lon
+                            }`}
                         >
                             {item.label}, {item.state}
                         </MenuItem>

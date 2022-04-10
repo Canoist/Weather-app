@@ -36,7 +36,7 @@ const NavBarMenuItem = ({ onClick, setting }) => {
 
 NavBarMenuItem.propTypes = {
     onClick: PropTypes.func,
-    setting: PropTypes.bool
+    setting: PropTypes.string
 };
 
 export default NavBarMenuItem;

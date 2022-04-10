@@ -7,12 +7,8 @@ import CardCloudy from "./cardCloud";
 import CardSnowRain from "./cardSnowRain";
 import CardCloudyRain from "./cardCloudyRain";
 
-const CardRouter = ({ api }) => {
-    // console.log(api);
-    //   const clouds = api.clouds.all;
-    //   const rain = Object.keys(api.rain).length;
-    //   const temp = api.main.temp;
-    const clouds = 80;
+const CardRouter = ({ data }) => {
+    const clouds = data.clouds;
     const rain = 1;
     const temp = -2;
     if (clouds >= 80) {
@@ -31,7 +27,7 @@ const CardRouter = ({ api }) => {
 };
 
 CardRouter.propTypes = {
-    api: PropTypes.object
+    data: PropTypes.object
 };
 
 export default CardRouter;

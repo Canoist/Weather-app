@@ -6,7 +6,7 @@ import {
     getUsersLoadingStatus,
     loadUser
 } from "../../../store/users";
-import { CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
@@ -17,7 +17,19 @@ const AppLoader = ({ children }) => {
             dispatch(loadUser());
         }
     }, [isLoggedIn]);
-    if (usersStatusLoading) return <CircularProgress />;
+    if (usersStatusLoading) {
+        return (
+            <Backdrop
+                sx={{
+                    color: "#fff",
+                    zIndex: (theme) => theme.zIndex.drawer + 1
+                }}
+                open={usersStatusLoading}
+            >
+                <CircularProgress />
+            </Backdrop>
+        );
+    }
     return children;
 };
 

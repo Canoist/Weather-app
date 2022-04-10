@@ -1,4 +1,11 @@
-import { Box, Button, Container, FormControl, TextField } from "@mui/material";
+import {
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    FormControl,
+    TextField
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CitySelector from "../components/citySelector";
 import CardWeather from "../components/weatherCards/cardWeather";
@@ -9,8 +16,11 @@ import getWeatherService from "../services/getWeatherService";
 const Main = () => {
     const [city, setCity] = useState("");
     const [currentCity, setCurrentCity] = useState("");
+    const [cityName, setCityName] = useState("");
     const [cityList, setCityList] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoadWeather, setIsLoadWeather] = useState(false);
+    const [weather, setWeather] = useState(false);
 
     const handleChangeCity = (e) => {
         setCity(e.target.value);
@@ -32,11 +42,15 @@ const Main = () => {
     }
 
     async function getDataWeather(data) {
+        setIsLoadWeather(true);
         try {
             const weather = await getWeatherService.get(data);
+
             return weather;
         } catch (error) {
             console.log(error.message);
+        } finally {
+            setIsLoadWeather(false);
         }
     }
 
@@ -44,10 +58,14 @@ const Main = () => {
         if (isLoaded) {
             const currentWeather = await getDataWeather(
                 ...cityList.filter(
-                    (city) => city.lat.toString() + city.lon === currentCity
+                    (city) =>
+                        city.lat.toString() + city.lon ===
+                        currentCity.split("_")[1]
                 )
             );
             console.log(currentWeather);
+            setCityName(currentCity.split("_")[0]);
+            setWeather(currentWeather);
         }
     }, [currentCity]);
 
@@ -79,7 +97,14 @@ const Main = () => {
                         value={currentCity}
                     />
                 )}
-                <CardWeather api={apiData} />
+                {isLoadWeather && <CircularProgress />}
+                {weather && (
+                    <CardWeather
+                        currentWeather={weather.current}
+                        api={apiData}
+                        name={cityName}
+                    />
+                )}
             </Box>
         </Container>
     );

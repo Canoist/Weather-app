@@ -4,12 +4,14 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import CardWind from "./cardWind";
 import CardRouter from "./cardRouter";
 
-const CardWeather = ({ api }) => {
+const CardWeather = ({ api, currentWeather, name }) => {
+    // console.log(currentWeather);
+
     return (
         <Card elevation={3} sx={{ maxWidth: 345 }}>
             <CardContent sx={{ textAlign: "center" }}>
                 <Typography gutterBottom variant="h4" component="h4">
-                    {api.name}
+                    {name}
                 </Typography>
                 <Box
                     sx={{
@@ -18,10 +20,10 @@ const CardWeather = ({ api }) => {
                         justifyContent: "space-around"
                     }}
                 >
-                    <CardRouter api={api} />
+                    <CardRouter data={currentWeather} />
                     <Box sx={{ textAlign: "left" }}>
                         <Typography gutterBottom variant="h5" component="div">
-                            Днем: {Math.trunc(api.main.temp_max)} {"\u2103"}
+                            Днем: {Math.trunc(currentWeather.temp)} {"\u2103"}
                         </Typography>
                         <Typography
                             gutterBottom
@@ -32,14 +34,16 @@ const CardWeather = ({ api }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <CardWind data={api} />
+                <CardWind data={currentWeather} />
             </CardContent>
         </Card>
     );
 };
 
 CardWeather.propTypes = {
-    api: PropTypes.object
+    api: PropTypes.object,
+    name: PropTypes.string,
+    currentWeather: PropTypes.object
 };
 
 export default CardWeather;
