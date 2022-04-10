@@ -31,7 +31,7 @@ const LinkToForm = ({ forSignIn, toggleForm }) => {
 
 LinkToForm.propTypes = {
     toggleForm: PropTypes.func,
-    forSignIn: PropTypes.boolean
+    forSignIn: PropTypes.bool
 };
 
 export default LinkToForm;

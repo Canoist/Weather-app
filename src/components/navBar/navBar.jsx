@@ -11,7 +11,6 @@ const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
-        console.log(event);
         setAnchorElNav(event.currentTarget);
     };
 

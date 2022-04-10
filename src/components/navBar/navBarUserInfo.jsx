@@ -11,23 +11,19 @@ import {
 } from "@mui/material";
 import NavBarButton from "./navBarButton";
 import { useSelector } from "react-redux";
-import { getUser, getIsLoggedIn } from "../../store/users";
-import { useHistory } from "react-router-dom";
+import { getUser, getDataStatus } from "../../store/users";
+import { Link } from "react-router-dom";
 
 const NavBarUserInfo = ({ settings, onClickCloseMenu }) => {
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const isLoggedIn = useSelector(getIsLoggedIn());
+    const isLoggedIn = useSelector(getDataStatus());
     const currentUser = useSelector(getUser());
-    const history = useHistory();
+    console.log("USER", currentUser);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = ({ target }) => {
-        console.log(target.id);
-        if (target.id === "Profile") {
-            history.push("/");
-        }
         setAnchorElUser(null);
     };
 
@@ -63,9 +59,11 @@ const NavBarUserInfo = ({ settings, onClickCloseMenu }) => {
                                 key={setting}
                                 onClick={handleCloseUserMenu}
                             >
-                                <Typography textAlign="center" id={setting}>
-                                    {setting}
-                                </Typography>
+                                <Link to={`/${setting.toLowerCase()}`}>
+                                    <Typography textAlign="center">
+                                        {setting}
+                                    </Typography>
+                                </Link>
                             </MenuItem>
                         ))}
                     </Menu>

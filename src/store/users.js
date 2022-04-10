@@ -88,7 +88,7 @@ export const signUp = (payload) => async (dispatch) => {
         localStorageService.setTokens(data);
         dispatch(authRequestSuccess({ userId: data.userId }));
         history.push("/");
-        const user = await userService.getCurrentUser();
+        const user = await userService.get();
         console.log(user);
         dispatch(usersRecieved(user));
     } catch (error) {
@@ -113,11 +113,10 @@ export const logIn =
             dispatch(authRequestSuccess({ userId: data.userId }));
             history.push(redirect);
             console.log(data);
-            const user = await userService.getCurrentUser();
-            console.log(user);
+            const user = await userService.get();
             dispatch(usersRecieved(user));
         } catch (error) {
-            const { code, message } = error.response.data.error;
+            const { code, message } = error;
             if (code === 400) {
                 const errorMessage = generateAuthError(message);
                 dispatch(authRequestFailed(errorMessage));
