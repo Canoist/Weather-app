@@ -11,7 +11,7 @@ const LinkToForm = ({ forSignIn, toggleForm }) => {
                 color: "#23252E"
             }}
         >
-            {forSignIn ? "Dont have account?" : "Уже есть аккаунт?"}{" "}
+            {forSignIn ? "Еще не с нами?" : "Уже есть аккаунт?"}{" "}
             <Link
                 variant="button"
                 underline="always"
@@ -23,7 +23,7 @@ const LinkToForm = ({ forSignIn, toggleForm }) => {
                 }}
             >
                 {" "}
-                {forSignIn ? "Sign up" : "Войти"}
+                {forSignIn ? "Присоединиться" : "Войти"}
             </Link>
         </p>
     );

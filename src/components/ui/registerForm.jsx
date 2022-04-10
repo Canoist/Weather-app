@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
@@ -7,6 +7,7 @@ import { getAuthErrors, signUp } from "../../store/users";
 import LinkToForm from "./linkToForm";
 import TitleForm from "./titleForm";
 import Adornment from "./adornment";
+import SignInButton from "./signInButton";
 
 const RegisterForm = ({ toggleForm }) => {
     const dispatch = useDispatch();
@@ -134,17 +135,7 @@ const RegisterForm = ({ toggleForm }) => {
                     }
                 })}
             />
-            <Button
-                variant="contained"
-                type="submit"
-                color="warning"
-                sx={{
-                    mt: 2,
-                    mb: 1
-                }}
-            >
-                Зарегистрироваться
-            </Button>
+            <SignInButton forSignIn={false} />
             <LinkToForm forSignIn={false} toggleForm={toggleForm} />
         </Box>
     );
