@@ -1,82 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, CardMedia, SvgIcon, Typography } from "@mui/material";
+import { Box, SvgIcon } from "@mui/material";
+import { getWindDirection } from "../../utils/getWindDirection";
 
 const CardWind = ({ data }) => {
-    const hardWind = Math.trunc(data.wind_speed) > 8;
     return (
         <Box
-            sx={
-                hardWind
-                    ? {
-                          display: "flex",
-                          alignItems: "center",
-                          boxShadow: 1,
-                          borderRadius: "8px",
-                          mt: 1,
-                          p: 2,
-                          width: "100%",
-                          mx: "auto"
-                      }
-                    : {
-                          display: "inline-block",
-                          alignItems: "center",
-                          boxShadow: 1,
-                          borderRadius: "8px",
-                          mt: 1,
-                          p: 2,
-                          px: 4,
-                          mx: "auto"
-                      }
-            }
+            sx={{
+                display: "inline-block",
+                alignItems: "center",
+                boxShadow: 2,
+                borderRadius: "8px",
+                mt: 1,
+                p: 2,
+                px: 4,
+                mx: "auto"
+            }}
         >
-            {hardWind && (
-                <Box sx={{ width: "60%" }}>
-                    <CardMedia
-                        component="img"
-                        image="./icons/36x36/wind.png"
-                        sx={{
-                            width: "36px",
-                            height: "36px",
-                            mx: "auto",
-                            mb: "2px"
-                        }}
-                        alt="Wind"
-                    />
-                    <Typography variant="body2" component="span">
-                        Сильный ветер!
-                    </Typography>
-                </Box>
-            )}
             <Box
                 sx={{
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    mr: 0.5
+                    alignItems: "center"
                 }}
             >
-                N
                 <SvgIcon
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 1000 1000"
                     stroke="currentColor"
                     strokeWidth="2"
                     sx={{
-                        fontSize: "36px",
+                        mr: 0.5,
+                        fontSize: "16px",
                         transform: `rotate(${data.wind_deg}deg)`
                     }}
                 >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8 7l4-4m0 0l4 4m-4-4v18"
-                    />
+                    <g fill="#48484a">
+                        <path d="M510.5,749.6c-14.9-9.9-38.1-9.9-53.1,1.7l-262,207.3c-14.9,11.6-21.6,6.6-14.9-11.6L474,48.1c5-16.6,14.9-18.2,21.6,0l325,898.7c6.6,16.6-1.7,23.2-14.9,11.6L510.5,749.6z"></path>
+                    </g>
                 </SvgIcon>
+                {Math.trunc(data.wind_speed) > 0
+                    ? Math.trunc(data.wind_speed)
+                    : 1}{" "}
+                м/с {getWindDirection(data.wind_deg)}
             </Box>
-            {Math.trunc(data.wind_speed) > 0 ? Math.trunc(data.wind_speed) : 1}{" "}
-            м/с
         </Box>
     );
 };

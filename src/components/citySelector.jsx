@@ -5,11 +5,9 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 const CitySelector = ({ value, onChange, cityList }) => {
     return (
         <FormControl sx={{ minWidth: "200px" }}>
-            <InputLabel id="demo-simple-select-label">
-                Уточните город...
-            </InputLabel>
+            <InputLabel id="select-label">Уточните город...</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
+                labelId="select-label"
                 id="demo-simple-select"
                 defaultValue="Выберете город..."
                 value={value}

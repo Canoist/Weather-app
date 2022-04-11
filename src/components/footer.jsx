@@ -19,7 +19,7 @@ const Footer = () => {
 
     return (
         <Container
-            maxWidth="xl"
+            maxWidth="100vw"
             sx={{
                 position: "fixed",
                 bottom: "0",
@@ -29,7 +29,7 @@ const Footer = () => {
             }}
         >
             <FormControlLabel
-                control={checked ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                control={!checked ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                 onClick={handleChange}
                 label="About this app"
             />
