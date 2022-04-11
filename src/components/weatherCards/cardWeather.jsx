@@ -58,7 +58,9 @@ const CardWeather = ({ currentWeather, name, alerts }) => {
                 <CardWind data={currentWeather} />
                 {alerts &&
                     alerts.map((item, index) =>
-                        index % 2 !== 0 ? <Alert key={item.event} /> : null
+                        index % 2 !== 0 ? (
+                            <Alert key={item.event} item={item} />
+                        ) : null
                     )}
             </CardContent>
         </Card>

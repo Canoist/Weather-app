@@ -1,5 +1,5 @@
 export function getWindDirection(data) {
-    if (data > 337.5 && data <= 22.5) {
+    if (data > 337.5 || data <= 22.5) {
         return "С";
     } else if (data > 22.5 && data <= 67.5) {
         return "СВ";
