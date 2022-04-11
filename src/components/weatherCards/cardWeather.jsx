@@ -38,6 +38,13 @@ const CardWeather = () => {
                             Ощущается как{" "}
                             {Math.trunc(currentWeather.feels_like)} {"\u2103"}
                         </Typography>
+                        <Typography
+                            gutterBottom
+                            variant="body1"
+                            component="div"
+                        >
+                            Влажность: {Math.trunc(currentWeather.humidity)}%
+                        </Typography>
                     </Box>
                 </Box>
                 <WeatherWind data={currentWeather} />
