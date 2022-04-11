@@ -9,21 +9,24 @@ import NavBar from "./components/navBar/navBar";
 import AppLoader from "./components/ui/hoc/appLoader";
 import UserEditPage from "./components/pages/userEditPage";
 import LogOut from "./layouts/logOut";
+import WeatherProvider from "./hooks/useWeather";
 
 function App() {
     return (
         <>
             <AppLoader>
-                <NavBar />
-                <Switch>
-                    <Route path="/login/:type?" component={Login} />
-                    <Route path="/favorites" component={Favorites} />
-                    <Route path="/profile" component={UserEditPage} />
-                    <Route path="/logout" component={LogOut} />
-                    <Route path="/" exact component={Main} />
-                    <Redirect to="/" />
-                </Switch>
-                <Footer />
+                <WeatherProvider>
+                    <NavBar />
+                    <Switch>
+                        <Route path="/login/:type?" component={Login} />
+                        <Route path="/favorites" component={Favorites} />
+                        <Route path="/profile" component={UserEditPage} />
+                        <Route path="/logout" component={LogOut} />
+                        <Route path="/" exact component={Main} />
+                        <Redirect to="/" />
+                    </Switch>
+                    <Footer />
+                </WeatherProvider>
             </AppLoader>
         </>
     );

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useWeather } from "../hooks/useWeather";
 
-const CitySelector = ({ value, onChange, cityList }) => {
+const CitySelector = ({ value, onChange }) => {
+    const { cityList } = useWeather();
     return (
         <FormControl sx={{ minWidth: "200px", m: 1 }}>
             <InputLabel id="select-label">Уточните город...</InputLabel>
@@ -33,8 +35,7 @@ const CitySelector = ({ value, onChange, cityList }) => {
 
 CitySelector.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    cityList: PropTypes.array
+    onChange: PropTypes.func
 };
 
 export default CitySelector;

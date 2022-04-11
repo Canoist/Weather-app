@@ -7,7 +7,7 @@ import {
     // CardMedia,
     Typography
 } from "@mui/material";
-import CardWind from "./cardWind";
+import WeatherWind from "./weatherWind";
 
 const CardThreeDays = ({ weather }) => {
     return (
@@ -61,7 +61,7 @@ const CardThreeDays = ({ weather }) => {
                         </Typography>
                     </Box> */}
                 </Box>
-                <CardWind data={weather} />
+                <WeatherWind data={weather} />
             </CardContent>
         </Card>
     );

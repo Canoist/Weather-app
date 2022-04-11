@@ -1,17 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import CardWind from "./cardWind";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import moment from "moment";
 import Alert from "./alert";
+import { useWeather } from "../../hooks/useWeather";
+import WeatherIconAndDescription from "./weatherIconAndDescription";
+import WeatherWind from "./weatherWind";
 
-const CardWeather = ({ currentWeather, name, alerts }) => {
+const CardWeather = () => {
+    const { weather, cityName } = useWeather();
+    const currentWeather = weather.current;
     return (
         <Card elevation={3} sx={{ maxWidth: 345 }}>
             <CardContent sx={{ textAlign: "center" }}>
                 {moment(currentWeather.dt * 1000).format("MM.DD HH:mm")}
                 <Typography gutterBottom variant="h4" component="h4">
-                    {name}
+                    {cityName}
                 </Typography>
                 <Box
                     sx={{
@@ -20,27 +23,9 @@ const CardWeather = ({ currentWeather, name, alerts }) => {
                         justifyContent: "space-around"
                     }}
                 >
-                    <Box>
-                        <CardMedia
-                            component="img"
-                            image={`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}.png`}
-                            sx={{
-                                width: "36px",
-                                height: "36px",
-                                mx: "auto",
-                                mb: "2px"
-                            }}
-                            alt={currentWeather.weather[0].description}
-                        />
-                        <Typography
-                            sx={{ textTransform: "capitalize" }}
-                            gutterBottom
-                            variant="h6"
-                            component="span"
-                        >
-                            {currentWeather.weather[0].description}
-                        </Typography>
-                    </Box>
+                    <WeatherIconAndDescription
+                        weather={currentWeather.weather[0]}
+                    />
                     <Box sx={{ textAlign: "left" }}>
                         <Typography gutterBottom variant="h5" component="div">
                             {Math.trunc(currentWeather.temp)} {"\u2103"}
@@ -55,9 +40,9 @@ const CardWeather = ({ currentWeather, name, alerts }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <CardWind data={currentWeather} />
-                {alerts &&
-                    alerts.map((item, index) =>
+                <WeatherWind data={currentWeather} />
+                {weather?.alerts &&
+                    weather?.alerts.map((item, index) =>
                         index % 2 !== 0 ? (
                             <Alert key={item.event} item={item} />
                         ) : null
@@ -65,12 +50,6 @@ const CardWeather = ({ currentWeather, name, alerts }) => {
             </CardContent>
         </Card>
     );
-};
-
-CardWeather.propTypes = {
-    name: PropTypes.string,
-    currentWeather: PropTypes.object,
-    alerts: PropTypes.array
 };
 
 export default CardWeather;

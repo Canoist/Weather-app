@@ -61,12 +61,12 @@ const WeatherProvider = ({ children }) => {
         <WeatherContext.Provider
             value={{
                 getData,
-                getDataWeather,
                 isLoaded,
                 isLoadWeather,
                 cityList,
                 weather,
                 cityName,
+                currentCity,
                 setCurrentCity
             }}
         >
