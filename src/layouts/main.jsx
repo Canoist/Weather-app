@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import CitySelector from "../components/citySelector";
+import CardThreeDays from "../components/weatherCards/cardThreeDays";
 import CardWeather from "../components/weatherCards/cardWeather";
 import { useWeather } from "../hooks/useWeather";
 
@@ -60,6 +61,7 @@ const Main = () => {
                 )}
                 {isLoadWeather && <CircularProgress sx={{ ml: 1 }} />}
                 {weather && <CardWeather />}
+                {weather && <CardThreeDays />}
             </Box>
         </Container>
     );
