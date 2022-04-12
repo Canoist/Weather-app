@@ -33,7 +33,10 @@ const Main = () => {
     return (
         <Container maxWidth="xl">
             <Box
-                sx={{ display: { lg: "flex", sm: "inline-block" } }}
+                sx={{
+                    display: { md: "flex", sm: "inline-block" },
+                    justifyContent: "flex-start"
+                }}
                 component="form"
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -45,7 +48,7 @@ const Main = () => {
                         id="search"
                         type="search"
                         onChange={handleChangeCity}
-                        label="Search"
+                        label="Поиск города"
                         sx={{ mb: 1 }}
                     />
                     <Button variant="contained" type="submit">

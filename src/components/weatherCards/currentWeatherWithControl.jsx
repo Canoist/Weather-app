@@ -7,7 +7,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const CurrentWeatherCardWithControl = ({ onClick, checked }) => {
     return (
-        <Box sx={{ m: 1 }}>
+        <Box sx={{ m: 1, ml: "auto" }}>
             <CardWeather />
             <FormControlLabel
                 sx={{

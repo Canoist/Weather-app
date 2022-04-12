@@ -19,7 +19,7 @@ const CollapseThreeDays = ({ checked }) => {
             {/* Horizontal, when non-large screens */}
             <Collapse
                 sx={{ display: { xs: "block", lg: "none" }, pb: "140px" }}
-                in={!checked}
+                in={checked}
             >
                 {weather && <CardThreeDays />}
             </Collapse>

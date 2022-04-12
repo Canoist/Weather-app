@@ -27,12 +27,14 @@ const CitySelector = ({ value, onChange }) => {
         );
     }
     return (
-        <FormControl sx={{ minWidth: "250px", m: 1 }}>
+        <FormControl sx={{ minWidth: "220px", m: 1 }}>
             <InputLabel id="select-label">Уточните город...</InputLabel>
             <Select
                 labelId="select-label"
                 id="demo-simple-select"
-                defaultValue="Выберете город..."
+                defaultValue={`${
+                    cityList[0].label
+                }_${cityList[0].lat.toString()}${cityList[0].lon}`}
                 value={value}
                 label="Уточните город..."
                 onChange={onChange}
