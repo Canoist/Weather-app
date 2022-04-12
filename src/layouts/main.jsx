@@ -34,8 +34,8 @@ const Main = () => {
         <Container maxWidth="xl">
             <Box
                 sx={{
-                    display: { md: "flex", sm: "inline-block" },
-                    justifyContent: "flex-start"
+                    width: { lg: "1060px" },
+                    display: { md: "flex", sm: "inline-block" }
                 }}
                 component="form"
                 onSubmit={(e) => {

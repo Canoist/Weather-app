@@ -10,7 +10,7 @@ const CardWeather = () => {
     const { weather, cityName } = useWeather();
     const currentWeather = weather.current;
     return (
-        <Card elevation={3} sx={{ maxWidth: 345 }}>
+        <Card elevation={3} sx={{ maxWidth: 360 }}>
             <CardContent sx={{ textAlign: "center" }}>
                 {moment(currentWeather.dt * 1000).format("MM.DD HH:mm")}
                 <Typography gutterBottom variant="h4" component="h4">
