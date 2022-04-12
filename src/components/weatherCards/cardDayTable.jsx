@@ -15,7 +15,7 @@ const CardDayTable = ({ day }) => {
     return (
         <TableContainer>
             <Table
-                sx={{ minWidth: 315, px: 1, mt: 2 }}
+                sx={{ minWidth: 325, px: 1, mt: 2 }}
                 aria-label="simple table"
             >
                 <TableHead>

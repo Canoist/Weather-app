@@ -20,6 +20,7 @@ const WeatherProvider = ({ children }) => {
     async function getData(data) {
         setIsLoaded(false);
         setCurrentCity("");
+        setWeather(false);
         try {
             const content = await getGeolocationService.get(data);
             setCityList(content);

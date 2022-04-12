@@ -13,7 +13,8 @@ const CardOneOfThreeDays = ({ day }) => {
                 sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-around"
+                    justifyContent: "space-around",
+                    height: "110px"
                 }}
             >
                 <WeatherIconAndDescription weather={day.weather[0]} />
