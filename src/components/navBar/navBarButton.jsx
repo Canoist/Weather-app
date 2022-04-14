@@ -6,18 +6,24 @@ import { Link } from "react-router-dom";
 const NavBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
     return (
         <Button
-            onClick={onClickCloseMenu}
-            sx={{ my: 2, color: "white", display: "block", ...otherStyles }}
+            sx={{
+                py: 3,
+                color: "white",
+                display: "block",
+                ...otherStyles
+            }}
         >
             <Link
+                onClick={onClickCloseMenu}
                 style={{
                     textDecoration: "none",
                     color: "white",
-                    textAlign: "center"
+                    textAlign: "center",
+                    width: "100%"
                 }}
                 to={`/${page !== "Main" ? page.toLowerCase() : ""}`}
             >
-                {page}
+                <div>{page}</div>
             </Link>
         </Button>
     );

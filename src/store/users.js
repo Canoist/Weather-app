@@ -53,12 +53,7 @@ const usersSlice = createSlice({
             state.dataLoaded = false;
         },
         userUpdated: (state, action) => {
-            state.entities = state.entities.map((u) => {
-                if (u._id === action.payload._id) {
-                    return action.payload;
-                }
-                return u;
-            });
+            state.entities = action.payload;
         },
         authRequested: (state) => {
             state.error = null;
@@ -89,7 +84,6 @@ export const signUp = (payload) => async (dispatch) => {
         dispatch(authRequestSuccess({ userId: data.userId }));
         history.push("/");
         const user = await userService.get();
-        console.log(user);
         dispatch(usersRecieved(user));
     } catch (error) {
         const { code, message } = error.response.data.error;
@@ -112,7 +106,6 @@ export const logIn =
             localStorageService.setTokens(data);
             dispatch(authRequestSuccess({ userId: data.userId }));
             history.push(redirect);
-            console.log(data);
             const user = await userService.get();
             dispatch(usersRecieved(user));
         } catch (error) {
@@ -147,7 +140,6 @@ export const updateUser = (payload) => async (dispatch) => {
     try {
         const data = await userService.patch(payload);
         dispatch(userUpdated(data));
-        history.push(`/favotites`);
     } catch (error) {
         dispatch(userUpdateFailed(error.message));
     }
