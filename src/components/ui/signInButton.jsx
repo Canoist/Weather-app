@@ -9,8 +9,7 @@ const SignInButton = ({ forSignIn }) => {
             type="submit"
             color="warning"
             sx={{
-                mt: 2,
-                mb: 2
+                my: 2
             }}
         >
             {forSignIn ? "Зарегистрироваться" : "Войти"}

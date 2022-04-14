@@ -30,7 +30,6 @@ const RegisterForm = ({ toggleForm }) => {
     };
 
     const onSubmit = (data) => {
-        console.log("SUBMIT", data);
         dispatch(signUp(data));
     };
 
