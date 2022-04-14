@@ -105,9 +105,8 @@ const CardWeather = () => {
                         }}
                         to={"/login"}
                     >
-                        войти
+                        войти.
                     </Link>{" "}
-                    .
                 </Typography>
             )}
         </Card>

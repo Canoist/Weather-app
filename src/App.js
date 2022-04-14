@@ -10,6 +10,7 @@ import AppLoader from "./components/ui/hoc/appLoader";
 import UserEditPage from "./components/pages/userEditPage";
 import LogOut from "./layouts/logOut";
 import WeatherProvider from "./hooks/useWeather";
+import ProtectedRoute from "./components/protectedRoute";
 
 function App() {
     return (
@@ -19,8 +20,14 @@ function App() {
                     <NavBar />
                     <Switch>
                         <Route path="/login/:type?" component={Login} />
-                        <Route path="/favorites" component={Favorites} />
-                        <Route path="/profile" component={UserEditPage} />
+                        <ProtectedRoute
+                            path="/favorites"
+                            component={Favorites}
+                        />
+                        <ProtectedRoute
+                            path="/profile"
+                            component={UserEditPage}
+                        />
                         <Route path="/logout" component={LogOut} />
                         <Route path="/" exact component={Main} />
                         <Redirect to="/" />

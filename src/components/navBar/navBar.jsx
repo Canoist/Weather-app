@@ -1,14 +1,17 @@
 import { AppBar, Container, Toolbar } from "@mui/material";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { getIsLoggedIn } from "../../store/users";
 import NavBarDesktop from "./navBarDesktop";
 import NavBarMobile from "./navBarMobile";
 import NavBarUserInfo from "./navBarUserInfo";
 
-const tabs = ["Main", "Favorites"];
-const settings = ["Profile", "Logout"];
-
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
+    const isLoggedIn = useSelector(getIsLoggedIn());
+
+    const tabs = isLoggedIn ? ["Main", "Favorites"] : ["Main"];
+    const settings = ["Profile", "Logout"];
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
