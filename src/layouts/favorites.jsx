@@ -1,6 +1,11 @@
 import React from "react";
+import { useFavWeather } from "../hooks/useFavoriteWeather";
 
 const Favorites = () => {
-    return <h1>Favorites Page</h1>;
+    const { favData, isLoaded } = useFavWeather();
+    if (!isLoaded) {
+        console.log(favData);
+    }
+    return !isLoaded && <h1>Favorites Page</h1>;
 };
 export default Favorites;

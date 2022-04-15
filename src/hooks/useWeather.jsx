@@ -52,7 +52,6 @@ const WeatherProvider = ({ children }) => {
                         currentCity.split("_")[1]
                 )
             );
-            console.log(currentWeather);
             setCityName(currentCity.split("_")[0]);
             setWeather(currentWeather);
         }
