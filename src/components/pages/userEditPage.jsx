@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../store/users";
+import sxForm from "../styles/sxForm";
 
 const UserEditPage = () => {
     const dispatch = useDispatch();
@@ -29,24 +30,7 @@ const UserEditPage = () => {
         );
     };
     return (
-        <Box
-            component="form"
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                boxShadow: 16, // theme.shadows[1]
-                color: "primary.main", // theme.palette.primary.main
-                my: 2,
-                mx: "auto", // margin: theme.spacing(1)
-                px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
-                pt: 3,
-                pb: 1,
-                zIndex: "fab", // theme.zIndex.tooltip
-                width: { xs: "220px", sm: "430px", md: "480px" }
-            }}
-            onSubmit={handleSubmit(onSubmit)}
-        >
+        <Box component="form" sx={sxForm} onSubmit={handleSubmit(onSubmit)}>
             <TextField
                 error={!!errors.firstname}
                 id="firstname"

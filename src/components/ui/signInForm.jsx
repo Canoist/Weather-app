@@ -8,6 +8,7 @@ import LinkToForm from "./linkToForm";
 import TitleForm from "./titleForm";
 import Adornment from "./adornment";
 import SignInButton from "./signInButton";
+import sxForm from "../styles/sxForm";
 
 const SignInForm = ({ toggleForm }) => {
     const history = useHistory();
@@ -45,20 +46,7 @@ const SignInForm = ({ toggleForm }) => {
     return (
         <Box
             component="form"
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                boxShadow: 16, // theme.shadows[1]
-                color: "primary.main", // theme.palette.primary.main
-                my: 3,
-                mx: "auto", // margin: theme.spacing(1)
-                px: 6.25, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) },
-                pt: 3,
-                pb: 1,
-                zIndex: "fab", // theme.zIndex.tooltip
-                width: { xs: "220px", sm: "430px", md: "480px" }
-            }}
+            sx={sxForm}
             onSubmit={handleSubmit}
         >
             <TitleForm />
