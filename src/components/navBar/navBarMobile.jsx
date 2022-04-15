@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import LeftDrawer from "./leftDrawer";
 import NavBarButton from "./navBarButton";
 
-const NavBarMobile = ({ tabs, onClickOpen, onClickClose, anchor }) => {
+const NavBarMobile = ({ tabs, onClickClose, anchor }) => {
     return (
         <>
             <Typography
@@ -26,6 +26,7 @@ const NavBarMobile = ({ tabs, onClickOpen, onClickClose, anchor }) => {
             >
                 {tabs.map((tab) => (
                     <NavBarButton
+                        otherStyles={{ heigth: "100%" }}
                         key={tab}
                         page={tab}
                         onClickCloseMenu={onClickClose}
@@ -44,7 +45,6 @@ const NavBarMobile = ({ tabs, onClickOpen, onClickClose, anchor }) => {
 
 NavBarMobile.propTypes = {
     tabs: PropTypes.array,
-    onClickOpen: PropTypes.func,
     onClickClose: PropTypes.func,
     anchor: PropTypes.object
 };
