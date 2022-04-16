@@ -13,11 +13,15 @@ const LeftDrawer = ({ isOpenedDrawer, closeDrawer, tabs }) => {
                 elevation: 3,
                 sx: { bgcolor: "primary.main" }
             }}
+            sx={{ display: { md: "none" } }}
             onClose={closeDrawer}
         >
-            <List sx={{ width: { xs: "120px", sm: "180px", md: "none" } }}>
-                {tabs.map((tab) => (
+            <List sx={{ width: { xs: "120px", sm: "180px" } }}>
+                {tabs.map((tab, index) => (
                     <ListItemText key={tab}>
+                        {index === 0 && (
+                            <Divider sx={{ borderColor: "text.disabled" }} />
+                        )}
                         <NavBarButton
                             otherStyles={{ width: "100%" }}
                             page={tab}
