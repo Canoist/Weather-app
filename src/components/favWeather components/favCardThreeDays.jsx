@@ -1,11 +1,10 @@
 import React from "react";
 import { Card, Divider, Box } from "@mui/material";
-import { useWeather } from "../../hooks/useWeather";
-import CardOneOfThreeDays from "./cardOneOfThreeDays";
+import CardOneOfThreeDays from "../weatherCards/cardOneOfThreeDays";
+import PropTypes from "prop-types";
 
-const CardThreeDays = () => {
-    const { weather } = useWeather();
-    const { daily } = weather;
+const FavCardThreeDays = ({ favData }) => {
+    const { daily } = favData;
     return (
         <Card
             elevation={3}
@@ -50,6 +49,8 @@ const CardThreeDays = () => {
     );
 };
 
-CardThreeDays.propTypes = {};
+FavCardThreeDays.propTypes = {
+    favData: PropTypes.object
+};
 
-export default CardThreeDays;
+export default FavCardThreeDays;

@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { useFavWeather } from "../../hooks/useFavWeather";
-import { getUser } from "../../store/users";
-import { updateUser } from "../../../store/users";
+import { getUser, updateUser } from "../../store/users";
+import BookmarkButton from "../weatherCards/bookmarkButton";
+import WeatherIconAndDescription from "../weatherCards/weatherIconAndDescription";
+import CurrentWeatherBox from "../weatherCards/currentWeatherBox";
+import WeatherWind from "../weatherCards/weatherWind";
+import Alert from "../weatherCards/alert";
+import PropTypes from "prop-types";
 
-const FavCardWeather = () => {
-    const { favData } = useFavWeather();
+const FavCardWeather = ({ favData }) => {
     const { weather, name } = favData;
     const currentUser = useSelector(getUser());
     const dispatch = useDispatch();
@@ -80,10 +83,12 @@ const FavCardWeather = () => {
                         ) : null
                     )}
             </CardContent>
-
-            <LinkForFav />
         </Card>
     );
+};
+
+FavCardWeather.propTypes = {
+    favData: PropTypes.object
 };
 
 export default FavCardWeather;

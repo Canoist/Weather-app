@@ -2,7 +2,7 @@ import { Box, Button, Container, FormControl, TextField } from "@mui/material";
 import React, { useState } from "react";
 import CitySelector from "../components/citySelector";
 import { useWeather } from "../hooks/useWeather";
-import WeatehrLoader from "../components/weatherCards/weatherLoader";
+import WeatherLoader from "../components/weatherCards/weatherLoader";
 import CurrentWeatherCardWithControl from "../components/weatherCards/currentWeatherWithControl";
 import CollapseThreeDays from "../components/weatherCards/collapseThreeDays";
 
@@ -62,7 +62,7 @@ const Main = () => {
                     />
                 )}
                 {isLoadWeather ? (
-                    <WeatehrLoader />
+                    <WeatherLoader />
                 ) : (
                     weather && (
                         <CurrentWeatherCardWithControl

@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CardWeather from "./favCardWeather";
+import FavCardWeather from "./favCardWeather";
 import { Box, FormControlLabel } from "@mui/material";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const FavWeatherCardWithControl = ({ onClick, checked }) => {
+const FavWeatherCardWithControl = ({ onClick, checked, favData }) => {
     return (
         <Box sx={{ m: 1, ml: "auto" }}>
-            <CardWeather />
+            <FavCardWeather favData={favData} />
             <FormControlLabel
                 sx={{
                     mt: 1,
@@ -27,7 +27,8 @@ const FavWeatherCardWithControl = ({ onClick, checked }) => {
 
 FavWeatherCardWithControl.propTypes = {
     onClick: PropTypes.func,
-    checked: PropTypes.bool
+    checked: PropTypes.bool,
+    favData: PropTypes.object
 };
 
 export default FavWeatherCardWithControl;

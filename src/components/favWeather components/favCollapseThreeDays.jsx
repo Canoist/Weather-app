@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useWeather } from "../../hooks/useWeather";
 import { Collapse } from "@mui/material";
-import CardThreeDays from "./cardThreeDays";
+import FavCardThreeDays from "./favCardThreeDays";
 
-const CollapseThreeDays = ({ checked }) => {
-    const { weather } = useWeather();
+const FavCollapseThreeDays = ({ checked, favData }) => {
     return (
         <>
             {/* Horizontal, when large screens */}
@@ -14,21 +12,22 @@ const CollapseThreeDays = ({ checked }) => {
                 orientation="horizontal"
                 in={checked}
             >
-                {weather && <CardThreeDays />}
+                <FavCardThreeDays favData={favData.weather} />
             </Collapse>
             {/* Horizontal, when non-large screens */}
             <Collapse
                 sx={{ display: { xs: "block", lg: "none" }, pb: "140px" }}
                 in={checked}
             >
-                {weather && <CardThreeDays />}
+                <FavCardThreeDays favData={favData.weather} />
             </Collapse>
         </>
     );
 };
 
-CollapseThreeDays.propTypes = {
+FavCollapseThreeDays.propTypes = {
+    favData: PropTypes.object,
     checked: PropTypes.bool
 };
 
-export default CollapseThreeDays;
+export default FavCollapseThreeDays;

@@ -1,7 +1,7 @@
 import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 
-const WeatehrLoader = () => {
+const WeatherLoader = () => {
     return (
         <Box
             sx={{
@@ -17,4 +17,4 @@ const WeatehrLoader = () => {
         </Box>
     );
 };
-export default WeatehrLoader;
+export default WeatherLoader;

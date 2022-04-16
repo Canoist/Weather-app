@@ -20,6 +20,7 @@ const FavWeatherProvider = ({ children }) => {
         setIsLoaded(true);
 
         if (favorites.length > favData.length) {
+            setFavData(() => []);
             favorites.map(async (item) => {
                 const weather = await getDataWeather({
                     lat: item.lat,
