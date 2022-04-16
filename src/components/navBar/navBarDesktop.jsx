@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const NavBarDesktop = ({ onClickOpen }) => {
+const NavBarDesktop = ({ tabs, onClickOpen, onClickClose }) => {
     return (
         <>
             <Typography
@@ -36,7 +36,9 @@ const NavBarDesktop = ({ onClickOpen }) => {
 };
 
 NavBarDesktop.propTypes = {
-    onClickOpen: PropTypes.func
+    tabs: PropTypes.array,
+    onClickOpen: PropTypes.func,
+    onClickClose: PropTypes.func
 };
 
 export default NavBarDesktop;

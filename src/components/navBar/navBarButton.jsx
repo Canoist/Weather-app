@@ -7,7 +7,7 @@ const NavBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
     return (
         <Button
             sx={{
-                borderRadius: 0,
+                py: 3,
                 color: "white",
                 display: "block",
                 ...otherStyles
@@ -18,19 +18,12 @@ const NavBarButton = ({ page, onClickCloseMenu, otherStyles }) => {
                 style={{
                     textDecoration: "none",
                     color: "white",
+                    textAlign: "center",
                     width: "100%"
                 }}
                 to={`/${page !== "Main" ? page.toLowerCase() : ""}`}
             >
-                <div
-                    style={{
-                        width: "100%",
-                        heigth: "100%",
-                        padding: "1rem 0"
-                    }}
-                >
-                    {page}
-                </div>
+                <div>{page}</div>
             </Link>
         </Button>
     );
