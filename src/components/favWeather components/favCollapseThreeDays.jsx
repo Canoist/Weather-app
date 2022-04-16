@@ -8,15 +8,15 @@ const FavCollapseThreeDays = ({ checked, favData }) => {
         <>
             {/* Horizontal, when large screens */}
             <Collapse
-                sx={{ display: { xs: "none", lg: "block" }, pb: "140px" }}
-                orientation="horizontal"
+                sx={{ display: { xs: "none", lg: "block" }, mb: 4 }}
+                // orientation="horizontal"
                 in={checked}
             >
                 <FavCardThreeDays favData={favData.weather} />
             </Collapse>
             {/* Horizontal, when non-large screens */}
             <Collapse
-                sx={{ display: { xs: "block", lg: "none" }, pb: "140px" }}
+                sx={{ display: { xs: "block", lg: "none" }, mb: 4 }}
                 in={checked}
             >
                 <FavCardThreeDays favData={favData.weather} />

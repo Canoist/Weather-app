@@ -6,36 +6,37 @@ import WindowLoader from "../components/windowLoader";
 import { useFavWeather } from "../hooks/useFavWeather";
 
 const Favorites = () => {
-    const [checked, setChecked] = useState();
+    const [checked, setChecked] = useState([false, false, false]);
     const { favData, isLoaded } = useFavWeather();
+    console.log(isLoaded, favData);
 
-    if (!isLoaded) {
-        console.log(favData);
-    }
-    const handleChangeCheck = () => {
-        setChecked((prev) => !prev);
+    const handleChangeCheck = (id) => {
+        const newArr = [false, false, false];
+        if (!checked[id]) {
+            newArr[id] = true;
+        }
+        setChecked(newArr);
     };
 
     return isLoaded ? (
-        <WindowLoader />
+        <WindowLoader open={isLoaded} />
     ) : (
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ pb: "100px" }}>
             {favData &&
-                favData.map((item) => (
-                    <FavWeatherCardWithControl
-                        key={item.name}
-                        favData={item}
-                        onClick={handleChangeCheck}
-                        checked={checked}
-                    />
-                ))}
-            {favData &&
-                favData.map((item) => (
-                    <FavCollapseThreeDays
-                        checked={checked}
-                        key={item.name}
-                        favData={item}
-                    />
+                favData.map((item, index) => (
+                    <div key={item.name}>
+                        <FavWeatherCardWithControl
+                            favData={item}
+                            onClick={handleChangeCheck}
+                            checked={checked[index]}
+                            id={index}
+                        />
+                        <FavCollapseThreeDays
+                            checked={checked[index]}
+                            key={item.name}
+                            favData={item}
+                        />
+                    </div>
                 ))}
         </Container>
     );

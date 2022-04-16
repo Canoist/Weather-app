@@ -12,13 +12,15 @@ export const useFavWeather = () => {
 };
 
 const FavWeatherProvider = ({ children }) => {
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(true);
     const [favData, setFavData] = useState([]);
     const { favorites } = useSelector(getUser());
 
     useEffect(() => {
         setIsLoaded(true);
-
+        if (!favorites.length) {
+            setIsLoaded(false);
+        }
         if (favorites.length > favData.length) {
             setFavData(() => []);
             favorites.map(async (item) => {
@@ -36,8 +38,14 @@ const FavWeatherProvider = ({ children }) => {
                 ]);
             });
         }
-        setIsLoaded(false);
     }, [favorites]);
+
+    useEffect(() => {
+        console.log(favorites.length === favData.length);
+        if (favorites.length === favData.length) {
+            setIsLoaded(false);
+        }
+    }, [favData]);
 
     async function getDataWeather(data) {
         try {

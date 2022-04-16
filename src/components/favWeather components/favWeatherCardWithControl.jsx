@@ -5,7 +5,7 @@ import { Box, FormControlLabel } from "@mui/material";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const FavWeatherCardWithControl = ({ onClick, checked, favData }) => {
+const FavWeatherCardWithControl = ({ onClick, checked, favData, id }) => {
     return (
         <Box sx={{ m: 1, ml: "auto" }}>
             <FavCardWeather favData={favData} />
@@ -18,7 +18,7 @@ const FavWeatherCardWithControl = ({ onClick, checked, favData }) => {
                     width: "345px"
                 }}
                 control={!checked ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-                onClick={onClick}
+                onClick={() => onClick(id)}
                 label="Показать/скрыть погоду на 3 дня"
             />
         </Box>
@@ -28,7 +28,8 @@ const FavWeatherCardWithControl = ({ onClick, checked, favData }) => {
 FavWeatherCardWithControl.propTypes = {
     onClick: PropTypes.func,
     checked: PropTypes.bool,
-    favData: PropTypes.object
+    favData: PropTypes.object,
+    id: PropTypes.number
 };
 
 export default FavWeatherCardWithControl;
