@@ -11,7 +11,7 @@ import UserEditPage from "./components/pages/userEditPage";
 import LogOut from "./layouts/logOut";
 import WeatherProvider from "./hooks/useWeather";
 import ProtectedRoute from "./components/protectedRoute";
-import FavWeatherProvider from "./hooks/useFavoriteWeather";
+import FavWeatherProvider from "./hooks/useFavWeather";
 
 function App() {
     return (

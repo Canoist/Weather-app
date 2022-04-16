@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import moment from "moment";
-import Alert from "./alert";
-import { useWeather } from "../../hooks/useWeather";
-import WeatherIconAndDescription from "./weatherIconAndDescription";
-import WeatherWind from "./weatherWind";
 import { useDispatch, useSelector } from "react-redux";
-import { getDataStatus, getUser, updateUser } from "../../store/users";
-import CurrentWeatherBox from "./currentWeatherBox";
-import BookmarkButton from "./bookmarkButton";
-import LinkForFav from "../ui/linkForFav";
+import { useFavWeather } from "../../hooks/useFavWeather";
+import { getUser } from "../../store/users";
+import { updateUser } from "../../../store/users";
 
-const CardWeather = () => {
-    const { weather, cityName } = useWeather();
-    const isLoggedIn = useSelector(getDataStatus());
+const FavCardWeather = () => {
+    const { favData } = useFavWeather();
+    const { weather, name } = favData;
     const currentUser = useSelector(getUser());
     const dispatch = useDispatch();
     const currentWeather = weather.current;
@@ -58,15 +53,10 @@ const CardWeather = () => {
                     {moment(currentWeather.dt * 1000).format("MM.DD HH:mm")}
                 </Typography>
 
-                {isLoggedIn && (
-                    <BookmarkButton
-                        bookmark={bookmark}
-                        onClick={toggleBookmark}
-                    />
-                )}
+                <BookmarkButton bookmark={bookmark} onClick={toggleBookmark} />
 
                 <Typography gutterBottom variant="h4" component="h4">
-                    {cityName}
+                    {name}
                 </Typography>
 
                 <Box
@@ -91,9 +81,9 @@ const CardWeather = () => {
                     )}
             </CardContent>
 
-            {!isLoggedIn && <LinkForFav />}
+            <LinkForFav />
         </Card>
     );
 };
 
-export default CardWeather;
+export default FavCardWeather;

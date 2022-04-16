@@ -1,5 +1,5 @@
 import React from "react";
-import { useFavWeather } from "../hooks/useFavoriteWeather";
+import { useFavWeather } from "../hooks/useFavWeather";
 
 const Favorites = () => {
     const { favData, isLoaded } = useFavWeather();

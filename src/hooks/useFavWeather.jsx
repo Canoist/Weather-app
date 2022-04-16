@@ -17,37 +17,37 @@ const FavWeatherProvider = ({ children }) => {
     const { favorites } = useSelector(getUser());
 
     useEffect(() => {
-        favorites.map(async (item) => {
-            const weather = await getDataWeather({
-                lat: item.lat,
-                lon: item.lon
+        setIsLoaded(true);
+
+        if (favorites.length > favData.length) {
+            favorites.map(async (item) => {
+                const weather = await getDataWeather({
+                    lat: item.lat,
+                    lon: item.lon
+                });
+                const cityName = await getCityName({
+                    lat: item.lat,
+                    lon: item.lon
+                });
+                setFavData((prev) => [
+                    ...prev,
+                    { name: cityName, weather: weather }
+                ]);
             });
-            const cityName = await getCityName({
-                lat: item.lat,
-                lon: item.lon
-            });
-            setFavData((prev) => [
-                ...prev,
-                { name: cityName, weather: weather }
-            ]);
-        });
+        }
+        setIsLoaded(false);
     }, [favorites]);
 
     async function getDataWeather(data) {
-        setIsLoaded(true);
         try {
             const weather = await getWeatherService.get(data);
             return weather;
         } catch (error) {
             console.log(error.message);
-        } finally {
-            setIsLoaded(false);
         }
     }
 
     async function getCityName({ lat, lon }) {
-        setIsLoaded(true);
-
         try {
             const { label } = await getGeolocationService.getReverse({
                 lat,
@@ -56,8 +56,6 @@ const FavWeatherProvider = ({ children }) => {
             return label;
         } catch (error) {
             console.log(error.message);
-        } finally {
-            setIsLoaded(false);
         }
     }
 
