@@ -55,7 +55,7 @@ const CardWeather = () => {
                     sx={{ py: 8, verticalAlign: "middle" }}
                     component="span"
                 >
-                    {moment(currentWeather.dt * 1000).format("MM.DD HH:mm")}
+                    {moment(currentWeather.dt * 1000).format("DD.MM HH:mm")}
                 </Typography>
 
                 {isLoggedIn && (

@@ -21,6 +21,12 @@ const userService = {
             payload
         );
         return data;
+    },
+    delete: async () => {
+        const { data } = await httpService.delete(
+            localStorageService.getUserId()
+        );
+        return data;
     }
 };
 

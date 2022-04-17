@@ -41,7 +41,6 @@ const FavWeatherProvider = ({ children }) => {
     }, [favorites]);
 
     useEffect(() => {
-        console.log(favorites.length === favData.length);
         if (favorites.length === favData.length) {
             setIsLoaded(false);
         }

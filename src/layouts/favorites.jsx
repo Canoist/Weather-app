@@ -8,7 +8,6 @@ import { useFavWeather } from "../hooks/useFavWeather";
 const Favorites = () => {
     const [checked, setChecked] = useState([false, false, false]);
     const { favData, isLoaded } = useFavWeather();
-    console.log(isLoaded, favData);
 
     const handleChangeCheck = (id) => {
         const newArr = [false, false, false];
