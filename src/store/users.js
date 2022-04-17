@@ -122,7 +122,6 @@ export const logIn =
 export const deleteUser = () => async (dispatch) => {
     try {
         const user = await userService.delete();
-        console.log(user);
         if (user._id === localStorageService.getUserId()) {
             dispatch(logOut());
         } else {
