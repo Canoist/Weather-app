@@ -5,7 +5,7 @@ import moment from "moment";
 import { Typography } from "@mui/material";
 
 const DayWeekDescription = ({ timestamp }) => {
-    let date = moment(timestamp * 1000).format("MM.DD dd");
+    let date = moment(timestamp * 1000).format("DD.MM dd");
     const dayWeekOnRu = translateDayOfTheWeek(date.split(" ")[1]);
     date = date.split(" ");
     date[1] = dayWeekOnRu;

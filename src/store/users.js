@@ -109,7 +109,7 @@ export const logIn =
             const user = await userService.get();
             dispatch(usersRecieved(user));
         } catch (error) {
-            const { code, message } = error;
+            const { code, message } = error.response.data.error;
             if (code === 400) {
                 const errorMessage = generateAuthError(message);
                 dispatch(authRequestFailed(errorMessage));
@@ -118,6 +118,19 @@ export const logIn =
             }
         }
     };
+
+export const deleteUser = () => async (dispatch) => {
+    try {
+        const user = await userService.delete();
+        if (user._id === localStorageService.getUserId()) {
+            dispatch(logOut());
+        } else {
+            console.error("Something was wrong");
+        }
+    } catch (error) {
+        dispatch(usersRequestFailed(error.message));
+    }
+};
 
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData();

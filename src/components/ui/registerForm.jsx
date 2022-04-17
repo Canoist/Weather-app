@@ -9,6 +9,8 @@ import TitleForm from "./titleForm";
 import Adornment from "./adornment";
 import SignInButton from "./signInButton";
 import sxForm from "../styles/sxForm";
+import TextLastname from "./textLastname";
+import TextFirstname from "./textFirstname";
 
 const RegisterForm = ({ toggleForm }) => {
     const dispatch = useDispatch();
@@ -39,36 +41,8 @@ const RegisterForm = ({ toggleForm }) => {
     return (
         <Box component="form" sx={sxForm} onSubmit={handleSubmit(onSubmit)}>
             <TitleForm />
-            <TextField
-                error={!!errors.firstname}
-                id="firstname"
-                label="Имя"
-                variant="standard"
-                margin="normal"
-                helperText={errors.firstname ? errors.firstname.message : null}
-                {...register("firstname", {
-                    required: {
-                        value: true,
-                        message: "Поле обязательно для заполнения"
-                    },
-                    maxLength: 80
-                })}
-            />
-            <TextField
-                error={!!errors.lastname}
-                helperText={errors.lastname ? errors.lastname.message : null}
-                id="lastname"
-                label="Фамилия"
-                variant="standard"
-                margin="normal"
-                {...register("lastname", {
-                    required: {
-                        value: true,
-                        message: "Поле обязательно для заполнения"
-                    },
-                    maxLength: 100
-                })}
-            />
+            <TextFirstname error={!!errors.firstname} register={register} />
+            <TextLastname error={errors.lastname} register={register} />
             <TextField
                 error={!!errors.password}
                 helperText={errors.password ? errors.password.message : null}
