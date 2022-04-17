@@ -44,11 +44,7 @@ const SignInForm = ({ toggleForm }) => {
     };
 
     return (
-        <Box
-            component="form"
-            sx={sxForm}
-            onSubmit={handleSubmit}
-        >
+        <Box component="form" sx={sxForm} onSubmit={handleSubmit}>
             <TitleForm />
             <TextField
                 error={!!error}

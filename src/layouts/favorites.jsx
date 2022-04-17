@@ -1,43 +1,18 @@
-import { Container } from "@mui/material";
-import React, { useState } from "react";
-import FavCollapseThreeDays from "../components/favWeather components/favCollapseThreeDays";
-import FavWeatherCardWithControl from "../components/favWeather components/favWeatherCardWithControl";
-import WindowLoader from "../components/windowLoader";
-import { useFavWeather } from "../hooks/useFavWeather";
+import React from "react";
+import { useSelector } from "react-redux";
+import FavoritePage from "../components/pages/favoritePage";
+import FavWeatherProvider from "../hooks/useFavWeather";
+import { getIsLoggedIn } from "../store/users";
 
 const Favorites = () => {
-    const [checked, setChecked] = useState([false, false, false]);
-    const { favData, isLoaded } = useFavWeather();
+    const isLoggedIn = useSelector(getIsLoggedIn());
 
-    const handleChangeCheck = (id) => {
-        const newArr = [false, false, false];
-        if (!checked[id]) {
-            newArr[id] = true;
-        }
-        setChecked(newArr);
-    };
-
-    return isLoaded ? (
-        <WindowLoader open={isLoaded} />
-    ) : (
-        <Container maxWidth="xl" sx={{ pb: "100px" }}>
-            {favData &&
-                favData.map((item, index) => (
-                    <div key={item.name}>
-                        <FavWeatherCardWithControl
-                            favData={item}
-                            onClick={handleChangeCheck}
-                            checked={checked[index]}
-                            id={index}
-                        />
-                        <FavCollapseThreeDays
-                            checked={checked[index]}
-                            key={item.name}
-                            favData={item}
-                        />
-                    </div>
-                ))}
-        </Container>
+    return (
+        isLoggedIn && (
+            <FavWeatherProvider>
+                <FavoritePage />
+            </FavWeatherProvider>
+        )
     );
 };
 export default Favorites;

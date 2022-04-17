@@ -24,7 +24,7 @@ const userService = {
     },
     delete: async () => {
         const { data } = await httpService.delete(
-            localStorageService.getUserId()
+            userEndPoint + localStorageService.getUserId()
         );
         return data;
     }
