@@ -36,12 +36,10 @@ const RegisterForm = ({ toggleForm }) => {
         dispatch(signUp(data));
     };
 
-    // console.log("ERRORS: ", errors);
-
     return (
         <Box component="form" sx={sxForm} onSubmit={handleSubmit(onSubmit)}>
             <TitleForm />
-            <TextFirstname error={!!errors.firstname} register={register} />
+            <TextFirstname error={errors.firstname} register={register} />
             <TextLastname error={errors.lastname} register={register} />
             <TextField
                 error={!!errors.password}
